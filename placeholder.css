@@ -1,0 +1,45 @@
+ul {
+    list-style-type: none;
+    background-color:white;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+li {
+    float: left;
+    border-right: 1px solid black;
+}
+
+li:last-child{
+    border-right: none;
+    border-left: 1px solid black;
+    float: right;
+    background-color: green;
+}
+
+li a{
+   display: block;
+   color: black;
+   text-align: center;
+   padding: 15px 20px;
+   text-decoration: none; 
+}
+
+li a:hover{
+    color: black;
+    background-color: yellow;
+}
+
+body {
+    background-color: lightblue;
+}
+
+h1.tClass {
+        text-align: center;
+        font-size: 48px;
+        background-color: lightcoral; 
+        padding: 10px;
+        margin: 10px 0px;
+}
+

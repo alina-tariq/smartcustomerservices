@@ -56,7 +56,7 @@ h2.subheader {
 }
 
 
-img {
+img.standard {
     border-radius: 10px;
     border: 5px solid #806519;
     margin: 10px 0px;
@@ -72,6 +72,8 @@ img.icon {
     height: 50px;
     margin-right: 5px;
     padding-right: 3px;
+    border-radius: 10px;
+    border: 5px solid #806519;
 }
 
 .header {
@@ -144,4 +146,15 @@ img.icon {
     color: #000000;
     text-align: left;
     display: inline-block;
+}
+
+#map {
+    border-radius: 10px;
+    border: 5px solid #806519;
+    height: 450px;
+    width: 450px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -44,7 +44,6 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <li><a href="#!signOut">Sign Out</a></li>
             <li><a href="#!cart">Cart</a></li>
         </ul>
 
@@ -77,11 +76,6 @@
                     templateUrl : "signUp.php",
                     
                 }) 
-            
-                .when("/signOut", {
-                    templateUrl : "signOut.php",
-                    
-                })
                 .when("/cart", {
                     templateUrl : "cart.php",
                     

@@ -45,7 +45,7 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <li><a href="#!cart">Cart</a></li>
+            <li><a href="#!cart" ondrop="drop(event)" ondragover="allowDrop(event)">Cart</a></li>
         </ul>
 
         <div ng-view>
@@ -56,7 +56,7 @@
             app.config(function($routeProvider) {
                 $routeProvider
                 .when("/", {
-                    templateUrl : "home.htm",
+                    templateUrl : "services.php",
                 })
                 .when("/about", {
                     templateUrl : "aboutus.html",
@@ -131,5 +131,18 @@
         </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw7m7GDGvIn9S8Tx_4jEYRtScBt5tN9pM&callback=initMap"></script>
-    </body>
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+    function drag(ev) {
+        ev.dataTransfer.setData("text",ev.target.id);
+    }
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>    
+</body>
 </html>

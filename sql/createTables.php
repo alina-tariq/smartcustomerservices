@@ -33,6 +33,7 @@ $createTable = "CREATE TABLE USERS (
                 , LOGIN_ID VARCHAR(20) UNIQUE NOT NULL
                 , UPASSWORD VARCHAR(20) NOT NULL 
                 , BALANCE FLOAT NOT NULL 
+                , ACCOUNT_TYPE INT NOT NULL 
                 , PRIMARY KEY (USER_ID)
                 );";
 

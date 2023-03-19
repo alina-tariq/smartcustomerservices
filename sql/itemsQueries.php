@@ -4,7 +4,7 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 $connect = connect();
 
 // Insert items
-// NOTE: REPLACE ITEM_IMG PATHS WITH YOUR OWN PATHS
+// NOTE: REPLACE LOAD_FILE PATHS WITH YOUR OWN FULL PATHS
 // Giving LOAD_FILE a variable or two concatenated variable caused issues
 
 $insertItem = "INSERT INTO ITEMS 

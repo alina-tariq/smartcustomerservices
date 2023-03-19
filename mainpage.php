@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 
+
     <div class="header">
                <div class="container-fluid">
                      <div class="row">
@@ -19,7 +20,7 @@
                            <div class="full">
                               <div class="center-desk">
                                  <div>
-                                    <a href="index.html"><img src="img/logo.png" class="logo"/></a>
+                                    <a href="index.html"><img src="img/logo.png" class="logo standard"/></a>
                                  </div>
                               </div>
                            </div>
@@ -47,7 +48,8 @@
             <li><a href="#!cart">Cart</a></li>
         </ul>
 
-        <div ng-view></div>
+        <div ng-view>
+        </div>
 
         <script>
             var app = angular.module("myApp", ["ngRoute"]);
@@ -78,10 +80,56 @@
                 }) 
                 .when("/cart", {
                     templateUrl : "cart.php",
+                    controller : "cartCtrl"
                     
                 });
             });
+            app.controller("cartCtrl", function ($scope) {
+                $scope.initMap = function(){
+                    var warehouseLoc = document.getElementById("warehouse").value;
+                    var uLocation = document.getElementById("uLocation").value;
+                    if (warehouseLoc == "350 Victoria Street, Toronto, ON"){
+                        var location = {lat: 43.657, lng: -79.378};
+                    } else if (warehouseLoc == "220 Yonge Street, Toronto, ON"){
+                        var location = {lat: 43.654, lng: -79.380};
+                    } else if (warehouseLoc == "290 Brenmer Blvd, Toronto, ON"){
+                        var location = {lat: 43.642, lng: -79.387};
+                    }
+                    var newMap = new google.maps.Map(document.getElementById("map"), {zoom: 13, center: location, mapTypeId: google.maps.MapTypeId.ROADMAP});
+                    var marker = new google.maps.Marker({position: location, map: newMap});
+                    var infoWindow = new google.maps.InfoWindow({ content: "<h5>Warehouse Location</h5>"});
+                    marker.addListener("click", function(){ infoWindow.open(newMap, marker); });
+
+                    if (uLocation){
+                        var geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({'address': uLocation}, function(results, status){
+                            if (status == google.maps.GeocoderStatus.OK){
+                                var lati = results[0].geometry.location.lat();
+                                var long = results[0].geometry.location.lng();
+                                var directionsDisplay = new google.maps.DirectionsRenderer();
+                                var directionsService = new google.maps.DirectionsService();
+                                var location2 = {lat: lati, lng: long};
+                                var marker2 = new google.maps.Marker({position: location2, map: newMap});
+                                var infoWindow = new google.maps.InfoWindow({ content: "<h5>Your Location</h5>"});
+                                marker.addListener("click", function(){ infoWindow.open(newMap, marker2); });
+
+                                directionsService.route( {
+                                    origin: location,
+                                    destination: location2,
+                                    provideRouteAlternatives: false,
+                                    travelMode: 'DRIVING'
+                                }, function(result, status) {if (status == google.maps.DirectionsStatus.OK){
+                                    directionsDisplay.setDirections(result);
+                                    directionsDisplay.setMap(newMap);
+                                }});
+                            }
+                        });
+                    }
+                }
+            });
 
         </script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw7m7GDGvIn9S8Tx_4jEYRtScBt5tN9pM&callback=initMap"></script>
     </body>
 </html>

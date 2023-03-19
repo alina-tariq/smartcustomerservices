@@ -41,7 +41,8 @@ h1.tClass {
         border-radius: 10px;
         border: 5px solid #806519;
         padding: 10px;
-        margin: 20px 20px;
+        margin: 30px 0px;
+        margin-right: 10px;
 }
 
 h2.subheader {
@@ -61,24 +62,20 @@ img {
     margin: 10px 0px;
 }
 
-p.para1{
-    font-size: 18px;
-    text-align: left;
-    background-color:#90F94E;
-    border-radius: 10px;
-    border: 5px solid #806519;
-    padding: 10px;
-    margin: 10px 0px;
-}
-
 @media screen and (max-width: 800px){
     li {float: none;}
     li:last-child{float: none;}
 }
 
+img.icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+    padding-right: 3px;
+}
+
 .header {
     width: 100%;
-    padding: 50px 50px;
     background: white;
     background-size: 100% 100%;
     background-repeat: no-repeat;

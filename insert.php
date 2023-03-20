@@ -52,10 +52,8 @@ include ("order.php");
 
             case 'Order':
                 $orderId = $_POST["orderId"];
-                $dIssued = strtotime($_POST["dIssued"]);
-                $dIssued = date('Y-m-d', $dIssued);
-                $dReceived = strtotime($_POST["dReceived"]);
-                $dReceived = date('Y-m-d', $dReceived);
+                $dIssued = date("Y-m-d",strtotime($_POST["dIssued"]));
+                $dReceived = date("Y-m-d",strtotime($_POST["dReceived"]));
                 $totPrice = $_POST["totPrice"];
                 $payment = $_POST["payment"];
                 $oUId = $_POST["oUId"];

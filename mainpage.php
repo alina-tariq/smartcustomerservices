@@ -20,6 +20,7 @@
             <a class="database" href="#!delete">Delete</a>
             <a class="database" href="#!select">Select</a>
             <a class="database" href="#!update">Update</a>
+            <a class="database" href="#!search">Search</a>
         </div>
     </div>
 
@@ -56,10 +57,6 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <li><button onClick="showSearch()" id="Search" class="searchButton">Search</button>
-            <li>
-                <form>
-            </li>   
             <li><a href="#!cart">Cart</a></li>
         </ul>
 
@@ -103,15 +100,19 @@
                     controller : "inCtrl"
                 }) 
                 .when("/delete", {
-                    templateUrl : "delete.php",
-                    
+                    templateUrl : "delete.html",
+                    controller: "delCtrl"
                 }) 
                 .when("/update", {
                     templateUrl : "update.php",
                     
                 }) 
                 .when("/select", {
-                    templateUrl : "select.php",
+                    templateUrl : "select.html",
+                    
+                }) 
+                .when("/search", {
+                    templateUrl : "search.html",
                     
                 }) 
             });
@@ -243,6 +244,21 @@
                     });
                 }
             });
+
+            app.controller("delCtrl", function ($scope) {
+                $scope.deleteItem = function(){
+                    var id = document.getElementById("id").value;
+                    var tableSelected = document.getElementById("tableSelect").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "delete.php",
+                        data: { id : id,
+                                tableSelect : tableSelected
+                        }
+                    });
+               }
+             });
+            
 
         </script>
 

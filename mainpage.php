@@ -57,11 +57,6 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <?php
-                if ($_SESSION["loggedin"] === true) {
-                    echo '<li><a href="#!logout">Logout</a></li>';
-                }
-            ?>
             <li><a href="#!cart">Cart</a></li>
         </ul>
 
@@ -88,8 +83,7 @@
                     
                 })
                 .when("/signIn", {
-                    templateUrl : "loginPage.php",
-                    controller : "loginCtrl"
+                    templateUrl : "signIn.php",
                     
                 })
                 .when("/signUp", {
@@ -115,11 +109,12 @@
                 }) 
                 .when("/select", {
                     templateUrl : "select.html",
+                    controller: "selCtrl"
                     
                 }) 
                 .when("/search", {
                     templateUrl : "search.html",
-                    
+                    controller: "searchCtrl"
                 }) 
             });
             app.controller("cartCtrl", function ($scope) {
@@ -173,7 +168,6 @@
                     jQuery.ajax({
                         type: "POST",
                         url: "insert.php",
-                        dataType: "json",
                         data: {funcName: 'Truck',
                                 truckId: truckId,
                                 truckCode: truckCode,
@@ -289,7 +283,21 @@
                         }
                     });
                }
-            });
+             });
+            
+             app.controller("searchCtrl", function ($scope) {
+                $scope.searchVal = function(){
+                    var id = document.getElementById("idVal").value;
+                    var type = document.getElementById("valConfirm").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "search.php",
+                        data: { id : id,
+                                type : type
+                        }
+                    });
+               }
+             });
 
             app.controller("loginCtrl", function($scope){
                 $scope.login = function(){

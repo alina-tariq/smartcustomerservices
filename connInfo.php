@@ -1,14 +1,18 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "SCSDatabase";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+function connect() {
+    // NOTE: REPLACE WITH YOUR DATABASE SETTINGS
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $db = "scs";
+    $conn = new mysqli($dbhost, $dbuser, $dbpass, $db);
+    
+    if ($conn->connect_error) {
+        die("Connection failed!");
+    } else {
+        echo "Connected\n";
+        return $conn;
+    }
 }
-echo "Connected successfully";
-?> 
+
+?>

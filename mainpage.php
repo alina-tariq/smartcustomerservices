@@ -57,6 +57,11 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
+            <?php
+                if ($_SESSION["loggedin"] === true) {
+                    echo '<li><a href="#!logout">Logout</a></li>';
+                }
+            ?>
             <li><a href="#!cart">Cart</a></li>
         </ul>
 
@@ -83,7 +88,8 @@
                     
                 })
                 .when("/signIn", {
-                    templateUrl : "signIn.php",
+                    templateUrl : "loginPage.php",
+                    controller : "loginCtrl"
                     
                 })
                 .when("/signUp", {
@@ -167,6 +173,7 @@
                     jQuery.ajax({
                         type: "POST",
                         url: "insert.php",
+                        dataType: "json",
                         data: {funcName: 'Truck',
                                 truckId: truckId,
                                 truckCode: truckCode,
@@ -282,7 +289,22 @@
                         }
                     });
                }
-             });
+            });
+
+            app.controller("loginCtrl", function($scope){
+                $scope.login = function(){
+                    var username = document.getElementById("username").value;
+                    var password = document.getElementById("password").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "login.php",
+                        dataType: "json",
+                        data: {username: username,
+                                password: password
+                        }
+                    });
+                }
+            });
             
 
         </script>

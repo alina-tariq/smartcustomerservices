@@ -270,6 +270,27 @@
                         }
                     });
                 }
+
+                $scope.inItem = function(){
+                    var fd = document.getElementById('itemForm');
+                    var formData = new FormData();
+                    formData.append("funcName", "Item");
+                    formData.append("itemId", fd[0]['value']);
+                    formData.append("itemName", fd[1]['value']);
+                    formData.append("price", fd[2]['value']);
+                    formData.append("madeIn", fd[3]['value']);
+                    formData.append("dept", fd[4]['value']);
+                    formData.append("qty", fd[5]['value']);
+                    formData.append("itemImg", fd[6].files[0], fd[6].files[0]['name']);
+                    console.log(fd[6].files[0]['name']);
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "insert.php",
+                        data: formData,
+                        contentType: false,
+                        processData: false
+                    });
+                }
             });
 
             app.controller("upCtrl", function($scope){

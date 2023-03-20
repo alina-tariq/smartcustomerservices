@@ -206,3 +206,13 @@ a.database:hover {
 .searchButton {
     padding: 15px 20px;    
 }
+
+.mainPage {
+    display: flex;
+    justify-content: center;
+}
+
+figcaption.figText {
+    text-align: center;
+    background-color:#806519;
+}

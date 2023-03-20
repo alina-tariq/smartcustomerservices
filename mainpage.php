@@ -83,8 +83,8 @@
                     
                 })
                 .when("/signIn", {
-                    templateUrl : "signIn.php",
-                    
+                    templateUrl : "loginPage.php",
+                    controller: "loginCtrl"
                 })
                 .when("/signUp", {
                     templateUrl : "signUp.php",
@@ -109,11 +109,12 @@
                 }) 
                 .when("/select", {
                     templateUrl : "select.html",
+                    controller: "selCtrl"
                     
                 }) 
                 .when("/search", {
                     templateUrl : "search.html",
-                    
+                    controller: "searchCtrl"
                 }) 
             });
             app.controller("cartCtrl", function ($scope) {
@@ -283,6 +284,35 @@
                     });
                }
              });
+            
+             app.controller("searchCtrl", function ($scope) {
+                $scope.searchVal = function(){
+                    var id = document.getElementById("idVal").value;
+                    var type = document.getElementById("valConfirm").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "search.php",
+                        data: { id : id,
+                                type : type
+                        }
+                    });
+               }
+             });
+
+            app.controller("loginCtrl", function($scope){
+                $scope.login = function(){
+                    var username = document.getElementById("username").value;
+                    var password = document.getElementById("password").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "login.php",
+                        dataType: "json",
+                        data: {username: username,
+                                password: password
+                        }
+                    });
+                }
+            });
             
 
         </script>

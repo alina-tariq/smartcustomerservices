@@ -2,6 +2,7 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<head>
@@ -10,7 +11,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" href="style.css">
 	</head>
+    
 
+<div class="topRight">
+<p class="dropButton">Database Maintain</p>
+        <div class="dropdown">
+            <a class="database" href="#!insert">Insert</a>
+            <a class="database" href="#!delete">Delete</a>
+            <a class="database" href="#!select">Select</a>
+            <a class="database" href="#!update">Update</a>
+        </div>
+    </div>
 
     <div class="header">
                <div class="container-fluid">
@@ -45,7 +56,11 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <li><a href="#!cart" ondrop="drop(event)" ondragover="allowDrop(event)">Cart</a></li>
+            <li><button onClick="showSearch()" id="Search" class="searchButton">Search</button>
+            <li>
+                <form>
+            </li>   
+            <li><a href="#!cart">Cart</a></li>
         </ul>
 
         <div ng-view>
@@ -56,7 +71,7 @@
             app.config(function($routeProvider) {
                 $routeProvider
                 .when("/", {
-                    templateUrl : "services.php",
+                    templateUrl : "home.htm",
                 })
                 .when("/about", {
                     templateUrl : "aboutus.html",
@@ -82,7 +97,23 @@
                     templateUrl : "cart.php",
                     controller : "cartCtrl"
                     
-                });
+                })
+                .when("/insert", {
+                    templateUrl : "insert.html",
+                    controller : "inCtrl"
+                }) 
+                .when("/delete", {
+                    templateUrl : "delete.php",
+                    
+                }) 
+                .when("/update", {
+                    templateUrl : "update.php",
+                    
+                }) 
+                .when("/select", {
+                    templateUrl : "select.php",
+                    
+                }) 
             });
             app.controller("cartCtrl", function ($scope) {
                 $scope.initMap = function(){
@@ -125,6 +156,91 @@
                             }
                         });
                     }
+                }
+            });
+            app.controller("inCtrl", function($scope){
+                $scope.inTruck = function(){
+                    var truckId = document.getElementById("truck_id").value;
+                    var truckCode = document.getElementById("truck_code").value;
+                    var availCode = document.getElementById("avail_code").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "insert.php",
+                        data: {funcName: 'Truck',
+                                truckId: truckId,
+                                truckCode: truckCode,
+                                availCode: availCode
+                        }
+                    });
+                }
+                
+                $scope.inShop = function(){
+                    var rec_id = document.getElementById("rec_id").value;
+                    var st_code = document.getElementById("st_code").value;
+                    var price = document.getElementById("price").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "insert.php",
+                        data: {funcName: 'Shop',
+                                rec_id: rec_id,
+                                st_code: st_code,
+                                price: price
+                        }
+                    });
+                }
+
+                $scope.inTrip = function(){
+                    var tripId = document.getElementById("tripId").value;
+                    var srcCode = document.getElementById("srcCode").value;
+                    var destCode = document.getElementById("destCode").value;
+                    var dist = document.getElementById("dist").value;
+                    var tTruckId = document.getElementById("tTruck_id").value;
+                    var tPrice = document.getElementById("tPrice").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "insert.php",
+                        data: {funcName: 'Trip',
+                                tripId: tripId,
+                                srcCode: srcCode,
+                                tPrice: tPrice,
+                                destCode: destCode,
+                                tTruckId: tTruckId,
+                                dist: dist
+                        }
+                    });
+                }
+
+                $scope.inUser = function(){
+                    var uId = document.getElementById("uId").value;
+                    var uName = document.getElementById("uName").value;
+                    var uLogin = document.getElementById("uLogin").value;
+                    var phone = document.getElementById("phone").value;
+                    var uAddress = document.getElementById("uAddress").value;
+                    var uCity = document.getElementById("uCity").value;
+                    var uProvince = document.getElementById("uProvince").value;
+                    var uPost = document.getElementById("uPost").value;
+                    var uPassword = document.getElementById("uPassword").value;
+                    var uBalance = document.getElementById("uBalance").value;
+                    var uAcc = document.getElementById("uAcc").value;
+                    var uEmail = document.getElementById("uEmail").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "insert.php",
+                        data: {funcName: 'User',
+                                uId : uId,
+                                uName: uName,
+                                uLogin : uLogin,
+                                phone : phone,
+                                uAddress : uAddress,
+                                uCity : uCity,
+                                uProvince : uProvince,
+                                uPost : uPost,
+                                uPassword : uPassword,
+                                uBalance : uBalance, 
+                                uAcc : uAcc,
+                                uEmail : uEmail
+                        }
+                    });
                 }
             });
 

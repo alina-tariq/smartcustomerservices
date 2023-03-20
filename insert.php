@@ -6,6 +6,7 @@ include ("truck.php");
 include ("shop.php");
 include ("trip.php");
 include ("user.php");
+include ("order.php");
 
     
     switch($_POST["funcName"]){
@@ -48,5 +49,17 @@ include ("user.php");
                 $uEmail = $_POST["uEmail"];
                 insertUser($uId, $uName, $uLogin, $phone, $uAddress, $uCity, $uProvince, $uPost, $uPassword, $uBalance, $uAcc, $uEmail, $connect);
                 break;  
+
+            case 'Order':
+                $orderId = $_POST["orderId"];
+                $dIssued = $_POST["dIssued"];
+                $dReceived = $_POST["dReceived"];
+                $totPrice = $_POST["totPrice"];
+                $payment = $_POST["payment"];
+                $oUId = $_POST["oUId"];
+                $oTId = $_POST["oTId"];
+                $rTId = $_POST["rTId"];
+                insertOrder($orderId, $dIssued, $dReceived, $totPrice, $payment, $oUId, $oTId,$rTId, $connect);
+                break; 
     }
 ?>

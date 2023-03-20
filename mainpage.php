@@ -104,8 +104,7 @@
                     controller: "delCtrl"
                 }) 
                 .when("/update", {
-                    templateUrl : "update.html",
-                    controller : "upCtrl"
+                    templateUrl : "update.php",
                     
                 }) 
                 .when("/select", {
@@ -272,117 +271,6 @@
                 }
             });
 
-            app.controller("upCtrl", function($scope){
-                $scope.upTruck = function(){
-                    var truckId = document.getElementById("truck_id").value;
-                    var truckCode = document.getElementById("truck_code").value;
-                    var availCode = document.getElementById("avail_code").value;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "update.php",
-                        data: {funcName: 'Truck',
-                                truckId: truckId,
-                                truckCode: truckCode,
-                                availCode: availCode
-                        }
-                    });
-                }
-                
-                $scope.upShop = function(){
-                    var rec_id = document.getElementById("rec_id").value;
-                    var st_code = document.getElementById("st_code").value;
-                    var price = document.getElementById("price").value;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "update.php",
-                        data: {funcName: 'Shop',
-                                rec_id: rec_id,
-                                st_code: st_code,
-                                price: price
-                        }
-                    });
-                }
-
-                $scope.upTrip = function(){
-                    var tripId = document.getElementById("tripId").value;
-                    var srcCode = document.getElementById("srcCode").value;
-                    var destCode = document.getElementById("destCode").value;
-                    var dist = document.getElementById("dist").value;
-                    var tTruckId = document.getElementById("tTruck_id").value;
-                    var tPrice = document.getElementById("tPrice").value;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "update.php",
-                        data: {funcName: 'Trip',
-                                tripId: tripId,
-                                srcCode: srcCode,
-                                tPrice: tPrice,
-                                destCode: destCode,
-                                tTruckId: tTruckId,
-                                dist: dist
-                        }
-                    });
-                }
-
-                $scope.upUser = function(){
-                    var uId = document.getElementById("uId").value;
-                    var uName = document.getElementById("uName").value;
-                    var uLogin = document.getElementById("uLogin").value;
-                    var phone = document.getElementById("phone").value;
-                    var uAddress = document.getElementById("uAddress").value;
-                    var uCity = document.getElementById("uCity").value;
-                    var uProvince = document.getElementById("uProvince").value;
-                    var uPost = document.getElementById("uPost").value;
-                    var uPassword = document.getElementById("uPassword").value;
-                    var uBalance = document.getElementById("uBalance").value;
-                    var uAcc = document.getElementById("uAcc").value;
-                    var uEmail = document.getElementById("uEmail").value;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "update.php",
-                        data: {funcName: 'User',
-                                uId : uId,
-                                uName: uName,
-                                uLogin : uLogin,
-                                phone : phone,
-                                uAddress : uAddress,
-                                uCity : uCity,
-                                uProvince : uProvince,
-                                uPost : uPost,
-                                uPassword : uPassword,
-                                uBalance : uBalance, 
-                                uAcc : uAcc,
-                                uEmail : uEmail
-                        }
-                    });
-                }
-
-                $scope.upOrder = function(){
-                    var orderId = document.getElementById("orderId").value;
-                    var dIssued = document.getElementById("dIssued").value;
-                    var dReceived = document.getElementById("dReceived").value;
-                    var totPrice = document.getElementById("totPrice").value;
-                    var payment = document.getElementById("payment").value;
-                    var oUId = document.getElementById("oUId").value;
-                    var oTId = document.getElementById("oTId").value;;
-                    var rTId = document.getElementById("rTId").value;;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "update.php",
-                        data: {funcName: 'Order',
-                                orderId : orderId,
-                                dIssued: dIssued,
-                                dReceived : dReceived,
-                                totPrice : totPrice,
-                                payment : payment,
-                                oUId : oUId,
-                                oTId : oTId,
-                                rTId : rTId 
-                        }
-                    });
-                }
-            });
-
             app.controller("delCtrl", function ($scope) {
                 $scope.deleteItem = function(){
                     var id = document.getElementById("id").value;
@@ -453,10 +341,232 @@
                         data: {username: username,
                                 password: password
                         }
+                        
                     });
                 }
             });
             
+            app.controller("selCtrl", function($scope){
+                $scope.selUser = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="user"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'users',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selOrders = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="order"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'orders',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selShopping = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="shops"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'shopping',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selTruck = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="truck"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'trucks',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selTrip = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="trip"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'trips',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+            });
 
         </script>
 

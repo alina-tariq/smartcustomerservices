@@ -14,4 +14,16 @@ function insertTrip($tripId, $srcCode, $price, $dist, $truckId, $destCode, $conn
     }
 }
 
+function updateTrip($tripId, $srcCode, $price, $dist, $truckId, $destCode, $connect){
+    $updateTrip = "UPDATE TRIPS SET SOURCE_CODE = '$srcCode', DESTINATION_CODE = '$destCode',
+    DISTANCE = $dist, TRUCK_ID = $truckId, PRICE = $price WHERE TRIP_ID = $tripId;";
+
+    try {
+        $result = mysqli_query($connect, $updateTrip);
+        echo "trip updated\n";
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+    }
+}
+
 ?>

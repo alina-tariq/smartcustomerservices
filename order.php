@@ -14,4 +14,17 @@ function insertOrder($orderId, $dIssued, $dReceived, $totPrice, $payment, $oUId,
     }
 }
 
+function updateOrder($orderId, $dIssued, $dReceived, $totPrice, $payment, $oUId, $oTId,$rTId, $connect){
+    $updateOrder = "UPDATE ORDERS SET DATE_ISSUED = '$dIssued', DATE_RECEIVED = '$dReceived', 
+    TOTAL_PRICE = $totPrice, PAYMENT_CODE = $payment, USER_ID = $oUId, TRIP_ID = $oTId,
+    RECEIPT_ID = $rTId WHERE ORDER_ID = $orderId;";
+
+    try {
+        $result = mysqli_query($connect, $updateOrder);
+        echo "order updated\n";
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+    }
+}
+
 ?>

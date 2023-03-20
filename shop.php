@@ -14,5 +14,17 @@ function insertShop($recId, $stCode, $price, $connect){
     }
 }
 
+function updateShop($recId, $stCode, $price, $connect){
+    $updateShop = "UPDATE SHOPPING
+                    SET STORE_CODE = $stCode, TOTAL_PRICE = $price 
+                    WHERE RECEIPT_ID = $recId;";
+
+    try {
+        $result = mysqli_query($connect, $updateShop);
+        echo "shop updated\n";
+    } catch (Exception $ex) {
+        $ex->getMessage();
+    }
+}
 
 ?>

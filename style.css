@@ -159,3 +159,50 @@ img.icon {
     justify-content: center;
     align-items: center;
 }
+
+.topRight {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    z-index: 1;
+}
+
+.dropButton {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: lightgray;
+    padding: 0px 10px;
+}
+
+.dropdown {
+    position: relative;
+    top: -25px;
+    display: none;
+    color: black;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none; 
+    z-index: 2;
+}
+
+.topRight:hover .dropdown {
+    display: block;
+}
+
+a.database {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none; 
+    background-color: #A38550;
+}
+
+a.database:hover {
+    color: black;
+    background-color: yellow;
+}
+
+.searchButton {
+    padding: 15px 20px;    
+}

@@ -1,6 +1,5 @@
 <?php include('connInfo.php');
 
-mysqli_report(MYSQLI_REPORT_ALL);
 $connect = connect();
 
 $id = $_POST["id"];

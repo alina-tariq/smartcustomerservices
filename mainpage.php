@@ -243,6 +243,31 @@
                         }
                     });
                 }
+
+                $scope.inOrder = function(){
+                    var orderId = document.getElementById("orderId").value;
+                    var dIssued = document.getElementById("dIssued").value;
+                    var dReceived = document.getElementById("dReceived").value;
+                    var totPrice = document.getElementById("totPrice").value;
+                    var payment = document.getElementById("payment").value;
+                    var oUId = document.getElementById("oUId").value;
+                    var oTId = document.getElementById("oTId").value;;
+                    var rTId = document.getElementById("rTId").value;;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "insert.php",
+                        data: {funcName: 'Order',
+                                orderId : orderId,
+                                dIssued: dIssued,
+                                dReceived : dReceived,
+                                totPrice : totPrice,
+                                payment : payment,
+                                oUId : oUId,
+                                oTId : oTId,
+                                rTId : rTId 
+                        }
+                    });
+                }
             });
 
             app.controller("delCtrl", function ($scope) {

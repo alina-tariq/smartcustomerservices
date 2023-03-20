@@ -83,8 +83,8 @@
                     
                 })
                 .when("/signIn", {
-                    templateUrl : "signIn.php",
-                    
+                    templateUrl : "loginPage.php",
+                    controller: "loginCtrl"
                 })
                 .when("/signUp", {
                     templateUrl : "signUp.php",

@@ -57,7 +57,7 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <li><a href="#!cart">Cart</a></li>
+            <li><a ondrop="drop(event)" ondragover="allowDrop(event)" href="#!cart">Cart</a></li>
         </ul>
 
         <div ng-view>
@@ -68,7 +68,8 @@
             app.config(function($routeProvider) {
                 $routeProvider
                 .when("/", {
-                    templateUrl : "home.htm",
+                    templateUrl : "home.html",
+                    controller: "homeCtrl"
                 })
                 .when("/about", {
                     templateUrl : "aboutus.html",
@@ -158,6 +159,37 @@
                             }
                         });
                     }
+                }
+
+                $scope.readCookies = function(){
+                    let x = document.cookie.split(';');
+                    let arr = [];
+                    for (var i=0; i<x.length; i++){
+                        let y = x[i].split('=')[1];
+                        arr.push(y);
+                    }
+                    console.log(arr);
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "handleItems.php",
+                        dataType: "json",
+                        data: {tablename : 'items',
+                            values : arr
+                        },  success: function(phpAsJson){
+
+                            var container = document.getElementById("invoice");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            console.log(arr);
+                            arr.forEach((item)=>{
+                                console.log(item);
+                                let para = document.createElement("p");
+                                let vals = Object.values(item);
+                                para.innerText = "Product Id: " + vals[0] + " Product: " + vals[1] + " Price: " + vals[2];
+                                container.appendChild(para);
+                             });
+                        }
+                    });
+
                 }
             });
             app.controller("inCtrl", function($scope){
@@ -567,21 +599,61 @@
                     });
                 }
             });
+            app.controller("homeCtrl", function($scope){
+
+                $scope.createListings = function(){
+                    var array=["item_id", "item_name", "price","item_img"];
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "getItems.php",
+                        dataType: "json",
+                        data: {tablename : 'items',
+                            values : array
+                        }, success: function(phpAsJson){
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            var container = document.getElementById("conListings");
+                            console.log(arr);
+                            arr.forEach((item) => {
+                                let itemFig = document.createElement("figure");
+                                let vals = Object.values(item);
+                                console.log(vals[3]);
+                                let img = document.createElement("img");
+                                img.src = vals[3];
+                                img.className = "standard";
+                                img.draggable = "true";
+                                img.addEventListener('dragstart', function (ev){ev.dataTransfer.setData("id", ev.currentTarget.id)});
+                                img.id = vals[0];
+                                itemFig.appendChild(img);
+                                let figcaption = document.createElement("figcaption");
+                                figcaption.className = "figText";
+                                figcaption.innerText = "Id: " + vals[0]+ " Product: " + vals[1] + " Price: " +  vals[2];
+                                itemFig.appendChild(figcaption);
+                                container.appendChild(itemFig);
+                            });
+                        }
+
+                        
+                    });
+                }
+            });
 
         </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw7m7GDGvIn9S8Tx_4jEYRtScBt5tN9pM&callback=initMap"></script>
 <script>
+    var count = 1;
     function allowDrop(ev) {
         ev.preventDefault();
     }
     function drag(ev) {
-        ev.dataTransfer.setData("text",ev.target.id);
+        ev.dataTransfer.setData("id", event.currentTarget.id);
     }
     function drop(ev) {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
+        var data = ev.dataTransfer.getData("id");
+        console.log(data)
+        document.cookie = "itemId" + count + "=" + data;
+        count = count + 1;
     }
 </script>    
 </body>

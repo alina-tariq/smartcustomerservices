@@ -1,8 +1,6 @@
-
 <div class="container">
        <div class="row d_flex">
-             <div class="col-sm-8">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco consectetur adipiscing elit, sed do eiusmod</p>
+             <div class="col-sm-8" ng-init="readCookies()" id="invoice">
             </div>    
             <div class="col-sm-4">    
                 <form>

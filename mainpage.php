@@ -13,7 +13,7 @@
 	</head>
     
 
-<div style="display:block;" id="adminMenu" class="topRight">
+<div style="display:none;" id="adminMenu" class="topRight">
 <p class="dropButton">Database Maintain</p>
         <div class="dropdown">
             <a class="database" href="#!insert">Insert</a>
@@ -495,6 +495,9 @@
                                 document.getElementById("signIn").style.display = "none";
                                 document.getElementById("signUp").style.display = "none";
                                 document.getElementById("signOut").style.display = "block";
+                                if (arr[1] == 0) {
+                                    document.getElementById("adminMenu").style.display = "block";
+                                }
                                 $scope.$apply(() => { $location.path('/');});
                             } else {
                                 document.getElementById("username").value = "";

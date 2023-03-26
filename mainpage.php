@@ -9,7 +9,7 @@
 		<title>Smart Customer Services</title>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
     
 
@@ -32,7 +32,7 @@
                            <div class="full">
                               <div class="center-desk">
                                  <div>
-                                    <a href="index.html"><img src="img/logo.png" class="logo standard"/></a>
+                                    <img src="img/logo.png" class="logo standard"/>
                                  </div>
                               </div>
                            </div>

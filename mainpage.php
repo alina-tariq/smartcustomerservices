@@ -362,7 +362,7 @@
                }
              });
 
-            app.controller("loginCtrl", function($scope){
+            app.controller("loginCtrl", ['$scope', '$location', function($scope, $location){
                 $scope.login = function(){
                     var username = document.getElementById("username").value;
                     var password = document.getElementById("password").value;
@@ -372,11 +372,22 @@
                         dataType: "json",
                         data: {username: username,
                                 password: password
+                        }, 
+                        success: function(logCheck){
+                            var arr = JSON.parse(JSON.stringify(logCheck));
+                            if (arr[0] == 1){
+                                $scope.$apply(() => { $location.path('/');});
+                            } else {
+                                document.getElementById("username").value = "";
+                                document.getElementById("password").value = "";
+                                document.getElementById("inc").innerHTML = "Invalid Username or Password";
+                            }
+
                         }
                         
                     });
                 }
-            });
+            }]);
             
             app.controller("selCtrl", function($scope){
                 $scope.selUser = function(){
@@ -679,4 +690,3 @@
 </script>
 
 </html>
-

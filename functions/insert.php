@@ -69,8 +69,7 @@ switch ($_POST["funcName"]) {
         $madeIn = $_POST["madeIn"];
         $dept = $_POST["dept"];
         $qty = $_POST["qty"];
-        $imgData = file_get_contents($_FILES["itemImg"]["tmp_name"]);
-        move_uploaded_file($_FILES["itemImg"]["tmp_name"], "/Applications/XAMPP/htdocs/CPS630Project/img/items/test.png");
+        $imgData = '/img/items/' . $_POST["itemImg"];
         insertItem($itemId, $itemName, $price, $madeIn, $dept, $qty, $imgData, $connect);
         break;
 }

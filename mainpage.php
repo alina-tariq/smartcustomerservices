@@ -315,11 +315,10 @@
                     formData.append("madeIn", fd[3]['value']);
                     formData.append("dept", fd[4]['value']);
                     formData.append("qty", fd[5]['value']);
-                    formData.append("itemImg", fd[6].files[0], fd[6].files[0]['name']);
-                    console.log(fd[6].files[0]['name']);
+                    formData.append("itemImg", fd[6].files[0]['name']);
                     jQuery.ajax({
                         type: "POST",
-                        url: "insert.php",
+                        url: "functions/insert.php",
                         data: formData,
                         contentType: false,
                         processData: false
@@ -431,6 +430,26 @@
                                 oTId : oTId,
                                 rTId : rTId 
                         }
+                    });
+                }
+                $scope.upItem = function(){
+                    var fd = document.getElementById('updateItemForm');
+                    var formData = new FormData();
+                    formData.append("funcName", "Item");
+                    formData.append("itemId", fd[0]['value']);
+                    formData.append("itemName", fd[1]['value']);
+                    formData.append("price", fd[2]['value']);
+                    formData.append("madeIn", fd[3]['value']);
+                    formData.append("dept", fd[4]['value']);
+                    formData.append("qty", fd[5]['value']);
+                    formData.append("itemImg", fd[6].files[0]['name']);
+                    console.log(fd);
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/update.php",
+                        data: formData,
+                        contentType: false,
+                        processData: false
                     });
                 }
             });
@@ -759,9 +778,9 @@
                             arr.forEach((item) => {
                                 let itemFig = document.createElement("figure");
                                 let vals = Object.values(item);
-                                console.log(vals[3]);
+                                console.log(".".concat(vals[3]));
                                 let img = document.createElement("img");
-                                img.src = vals[3];
+                                img.src = ".".concat(vals[3]);
                                 img.className = "standard";
                                 img.draggable = "true";
                                 img.addEventListener('dragstart', function (ev){ev.dataTransfer.setData("id", ev.currentTarget.id)});

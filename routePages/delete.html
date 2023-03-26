@@ -1,0 +1,17 @@
+<div class="container">
+       <div class="row d_flex">
+            <p>Delete From Tables: </p>
+                <form>
+                    <input type="text" placeholder="Id" id="id" required>
+                    <select name="table" id="tableSelect">
+                        <option value="items">Items</option>
+                        <option value="users">Users</option>
+                        <option value="trucks">Trucks</option>
+                        <option value="trips">Trips</option>
+                        <option value="shopping">Shops</option>
+                        <option value="orders">Orders</option>
+                    </select>
+                    <button ng-click="deleteItem()">Submit</button>
+                </form>
+        </div>
+    </div>

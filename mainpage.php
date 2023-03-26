@@ -839,13 +839,26 @@
 
             app.controller("premCtrl", ['$scope', '$location', function($scope, $location){
                 $scope.becomePremium = function(){
+                    var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
+                    var dateRe = new RegExp("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/");
+                    var cvcRe = new RegExp("[0-9]{3}");
+                    var creditNum = document.getElementById("cNum").value;
+                    var expDate = document.getElementById("eDate").value;
+                    var cvc = document.getElementById("cvc_code").value;
+                    if (creditRe.test(creditNum) && dateRe.test(expDate) && cvcRe.test(cvc)){
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/premium.php"
                      });
                     document.getElementById("premium").style.display = "none";
                     $scope.$applyAsync(() => { $location.path('/');});
+                } else {
+                    document.getElementById("cNum").value = "";
+                    document.getElementById("eDate").value = "";
+                    document.getElementById("cvc_code").value = "";
+                    document.getElementById("inc").innerHTML = "Please Enter Valid Payment Information";
                 }
+            }
             }]);
             
 

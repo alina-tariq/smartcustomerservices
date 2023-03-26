@@ -2,7 +2,7 @@
 mysqli_report(MYSQLI_REPORT_ALL);
 $conn = connect();
 
-$sql = "SELECT UNAME, UPASSWORD FROM USERS WHERE LOGIN_ID = ?";
+$sql = "SELECT UNAME, UPASSWORD, ACCOUNT_TYPE FROM USERS WHERE LOGIN_ID = ?";
 $username = $_POST["username"];
 $password = $_POST["password"];
 $arr = array();
@@ -15,7 +15,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
       mysqli_stmt_store_result($stmt);
           
       if (mysqli_stmt_num_rows($stmt) == 1) {
-        mysqli_stmt_bind_result($stmt, $name, $hashed_password);
+        mysqli_stmt_bind_result($stmt, $name, $hashed_password, $acc);
 
         if (mysqli_stmt_fetch($stmt)) {
           if ($password == $hashed_password) {
@@ -24,6 +24,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
               $_SESSION["name"] = $name;
               $_SESSION["username"] = $username;
               array_push($arr, 1);
+              array_push($arr, $acc);
               echo json_encode($arr);
 
           } else { 

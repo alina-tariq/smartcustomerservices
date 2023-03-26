@@ -4,8 +4,8 @@
              <form>
                  <input type="text" placeholder="Credit Card Number" pattern="[0-9]{4}(-?[0-9]{4}){3}$" id="cNum" required>
                  <input type="text" placeholder="Expiry Date (MM/YY)" pattern="\b\d{2}\/\d{2}\b" id="eDate" required>
-                 <input type="text" placeholder="CVC" id="cvc code" pattern="[0-9]{3}" required>
-                 <button ng-click="becomePremium()">Submit</button>
+                 <input type="text" placeholder="CVC" id="cvc_code" pattern="[0-9]{3}" required>
+                 <input type="submit" ng-click="becomePremium()" value="Submit"></input>
              </form>
      </div>
 </div>

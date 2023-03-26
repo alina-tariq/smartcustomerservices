@@ -771,6 +771,51 @@
                         }
                     });
                 }
+
+                $scope.selItem = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="item"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/select.php",
+                        dataType: "json",
+                        data: {tablename: 'items',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
             });
             app.controller("homeCtrl", function($scope){
 

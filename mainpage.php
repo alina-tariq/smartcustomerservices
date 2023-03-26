@@ -13,7 +13,7 @@
 	</head>
     
 
-<div class="topRight">
+<div style="display:block;" id="adminMenu" class="topRight">
 <p class="dropButton">Database Maintain</p>
         <div class="dropdown">
             <a class="database" href="#!insert">Insert</a>
@@ -55,8 +55,9 @@
             but I don't know if that part is required.
             For now I'm just leaving all those buttons here but we can fix it later
             -->
-            <li><a href="#!signIn">Sign In</a></li>
-            <li><a href="#!signUp">Sign Up</a></li>
+            <li id="signIn"><a href="#!signIn">Sign In</a></li>
+            <li id="signUp"><a href="#!signUp">Sign Up</a></li>
+            <li id="signOut" style="display:none;"><a href="#!signOut">Sign Out</a></li>
             <li><a ondrop="drop(event)" ondragover="allowDrop(event)" href="#!cart">Cart</a></li>
         </ul>
 
@@ -90,6 +91,10 @@
                 .when("/signUp", {
                     templateUrl : "signUp.php",
                     
+                }) 
+                .when("/signOut", {
+                    templateUrl : "routePages/signout.html",
+                    controller: "logoutCtrl"
                 }) 
                 .when("/cart", {
                     templateUrl : "routePages/cart.html",
@@ -487,6 +492,9 @@
                         success: function(logCheck){
                             var arr = JSON.parse(JSON.stringify(logCheck));
                             if (arr[0] == 1){
+                                document.getElementById("signIn").style.display = "none";
+                                document.getElementById("signUp").style.display = "none";
+                                document.getElementById("signOut").style.display = "block";
                                 $scope.$apply(() => { $location.path('/');});
                             } else {
                                 document.getElementById("username").value = "";
@@ -758,6 +766,20 @@
                     });
                 }
             });
+
+            app.controller("logoutCtrl", ['$scope', '$location', function($scope, $location){
+                $scope.logout = function(){
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/logout.php"
+                     });
+                    document.getElementById("signIn").style.display = "block";
+                    document.getElementById("signUp").style.display = "block";
+                    document.getElementById("adminMenu").style.display = "none";
+                    document.getElementById("signOut").style.display = "none";
+                    $scope.$applyAsync(() => { $location.path('/');});
+                }
+            }]);
 
         </script>
 

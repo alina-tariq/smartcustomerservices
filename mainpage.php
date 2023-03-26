@@ -57,7 +57,7 @@
             -->
             <li><a href="#!signIn">Sign In</a></li>
             <li><a href="#!signUp">Sign Up</a></li>
-            <li><a href="#!cart">Cart</a></li>
+            <li><a ondrop="drop(event)" ondragover="allowDrop(event)" href="#!cart">Cart</a></li>
         </ul>
 
         <div ng-view>
@@ -68,7 +68,8 @@
             app.config(function($routeProvider) {
                 $routeProvider
                 .when("/", {
-                    templateUrl : "home.htm",
+                    templateUrl : "home.html",
+                    controller: "homeCtrl"
                 })
                 .when("/about", {
                     templateUrl : "aboutus.html",
@@ -159,6 +160,37 @@
                             }
                         });
                     }
+                }
+
+                $scope.readCookies = function(){
+                    let x = document.cookie.split(';');
+                    let arr = [];
+                    for (var i=0; i<x.length; i++){
+                        let y = x[i].split('=')[1];
+                        arr.push(y);
+                    }
+                    console.log(arr);
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "handleItems.php",
+                        dataType: "json",
+                        data: {tablename : 'items',
+                            values : arr
+                        },  success: function(phpAsJson){
+
+                            var container = document.getElementById("invoice");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            console.log(arr);
+                            arr.forEach((item)=>{
+                                console.log(item);
+                                let para = document.createElement("p");
+                                let vals = Object.values(item);
+                                para.innerText = "Product Id: " + vals[0] + " Product: " + vals[1] + " Price: " + vals[2];
+                                container.appendChild(para);
+                             });
+                        }
+                    });
+
                 }
             });
             app.controller("inCtrl", function($scope){
@@ -323,7 +355,6 @@
                         }
                     });
                 }
-
                 $scope.upTrip = function(){
                     var tripId = document.getElementById("tripId").value;
                     var srcCode = document.getElementById("srcCode").value;
@@ -344,7 +375,6 @@
                         }
                     });
                 }
-
                 $scope.upUser = function(){
                     var uId = document.getElementById("uId").value;
                     var uName = document.getElementById("uName").value;
@@ -377,7 +407,6 @@
                         }
                     });
                 }
-
                 $scope.upOrder = function(){
                     var orderId = document.getElementById("orderId").value;
                     var dIssued = document.getElementById("dIssued").value;
@@ -463,7 +492,7 @@
                }
              });
 
-            app.controller("loginCtrl", function($scope){
+            app.controller("loginCtrl", ['$scope', '$location', function($scope, $location){
                 $scope.login = function(){
                     var username = document.getElementById("username").value;
                     var password = document.getElementById("password").value;
@@ -473,27 +502,321 @@
                         dataType: "json",
                         data: {username: username,
                                 password: password
+                        }, 
+                        success: function(logCheck){
+                            var arr = JSON.parse(JSON.stringify(logCheck));
+                            if (arr[0] == 1){
+                                $scope.$apply(() => { $location.path('/');});
+                            } else {
+                                document.getElementById("username").value = "";
+                                document.getElementById("password").value = "";
+                                document.getElementById("inc").innerHTML = "Invalid Username or Password";
+                            }
+
+                        }
+                        
+                    });
+                }
+            }]);
+            
+            app.controller("selCtrl", function($scope){
+                $scope.selUser = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="user"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'users',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selOrders = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="order"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'orders',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selShopping = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="shops"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'shopping',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selTruck = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="truck"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'trucks',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
+                        }
+                    });
+                }
+
+                $scope.selTrip = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="trip"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].value);
+                    }
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "select.php",
+                        dataType: "json",
+                        data: {tablename: 'trips',
+                                values : array
+                        }, 
+                        success: function(phpAsJson){
+                            var container = document.getElementById("conTable");
+                            let table = document.createElement("table");
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            let cols = Object.keys(arr[0]);
+                            let tr = table.insertRow();
+
+                            cols.forEach((item) => {
+                                let th = document.createElement("th");
+                                th.innerText = item;
+                                tr.appendChild(th);
+                            });
+
+                            arr.forEach((item) => {
+                                let tr = document.createElement("tr");
+                                let vals = Object.values(item);
+                            
+
+                            vals.forEach((elem) => {
+                                let td = document.createElement("td");
+                                td.innerText = elem;
+                                tr.appendChild(td);
+                            });
+
+                            table.appendChild(tr);
+                        });
+                        container.appendChild(table);
                         }
                     });
                 }
             });
-            
+            app.controller("homeCtrl", function($scope){
+
+                $scope.createListings = function(){
+                    var array=["item_id", "item_name", "price","item_img"];
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "getItems.php",
+                        dataType: "json",
+                        data: {tablename : 'items',
+                            values : array
+                        }, success: function(phpAsJson){
+                            var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            var container = document.getElementById("conListings");
+                            console.log(arr);
+                            arr.forEach((item) => {
+                                let itemFig = document.createElement("figure");
+                                let vals = Object.values(item);
+                                console.log(vals[3]);
+                                let img = document.createElement("img");
+                                img.src = vals[3];
+                                img.className = "standard";
+                                img.draggable = "true";
+                                img.addEventListener('dragstart', function (ev){ev.dataTransfer.setData("id", ev.currentTarget.id)});
+                                img.id = vals[0];
+                                itemFig.appendChild(img);
+                                let figcaption = document.createElement("figcaption");
+                                figcaption.className = "figText";
+                                figcaption.innerText = "Id: " + vals[0]+ " Product: " + vals[1] + " Price: " +  vals[2];
+                                itemFig.appendChild(figcaption);
+                                container.appendChild(itemFig);
+                            });
+                        }
+
+                        
+                    });
+                }
+            });
 
         </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw7m7GDGvIn9S8Tx_4jEYRtScBt5tN9pM&callback=initMap"></script>
 <script>
+    var count = 1;
     function allowDrop(ev) {
         ev.preventDefault();
     }
     function drag(ev) {
-        ev.dataTransfer.setData("text",ev.target.id);
+        ev.dataTransfer.setData("id", event.currentTarget.id);
     }
     function drop(ev) {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
+        var data = ev.dataTransfer.getData("id");
+        console.log(data)
+        document.cookie = "itemId" + count + "=" + data;
+        count = count + 1;
     }
 </script>    
+
 </body>
+<footer>
+    <h6 id="browser" class="f1"></h6>
+</footer>
+<script>
+    			var res = window.navigator.userAgent;
+			if (res.includes("Edg") == true){
+				newStr = "Browser: Microsoft Edge";
+				document.getElementById("browser").innerHTML = newStr;	
+			} else if (res.includes("Firefox") == true){
+				newStr = "Browser: Firefox";
+				document.getElementById("browser").innerHTML = newStr;	
+			} else if (res.includes("Chrome") == true){
+				newStr = "Browser: Google Chrome";
+				document.getElementById("browser").innerHTML = newStr;	
+			} else {
+                newStr = "Browser Type Not Detected";
+				document.getElementById("browser").innerHTML = newStr;	
+            }
+</script>
+
 </html>

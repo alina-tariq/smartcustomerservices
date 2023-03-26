@@ -6,7 +6,18 @@ $data = $_POST["values"];
 $vals = implode(",", $data);
 $vals = strval($vals);
 
-$searchQuery = "SELECT item_id,item_name,price FROM items WHERE item_id IN ($vals)";
+session_start();
+if (isset($_SESSION['type'])){
+    if ($_SESSION['type'] == 2){
+        $searchQuery = "SELECT item_id,item_name,discount_price FROM items WHERE item_id IN ($vals)";
+    } else {
+        $searchQuery = "SELECT item_id,item_name,price FROM items WHERE item_id IN ($vals)";
+    }
+} else {
+    $searchQuery = "SELECT item_id,item_name,price FROM items WHERE item_id IN ($vals)";
+}
+
+
 
 
 try {
@@ -19,3 +30,5 @@ try {
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
+
+?>

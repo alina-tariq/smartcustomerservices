@@ -5,8 +5,16 @@ $data = $_POST["values"];
 
 $vals = implode(",", $data);
 
-$searchQuery = "SELECT $vals FROM items";
-
+session_start();
+if (isset($_SESSION['type'])){
+    if ($_SESSION['type'] == 2){
+    $searchQuery = "SELECT ITEM_ID, ITEM_NAME, DISCOUNT_PRICE, ITEM_IMG FROM items";
+    } else {
+        $searchQuery = "SELECT $vals FROM items";
+    }
+} else {
+    $searchQuery = "SELECT $vals FROM items";
+}
 
 try {
     $result = mysqli_query($connect, $searchQuery);
@@ -18,3 +26,5 @@ try {
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
+
+?>

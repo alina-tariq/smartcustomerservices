@@ -216,3 +216,12 @@ figcaption.figText {
     text-align: center;
     background-color:#806519;
 }
+
+h6.f1 {
+    text-align: center;
+    background-color: #32a838;
+    border-radius: 10px;
+    border: 2px solid #806519;
+    margin: 10px;
+    padding: 10px; 
+}

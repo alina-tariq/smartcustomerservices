@@ -656,5 +656,27 @@
         count = count + 1;
     }
 </script>    
+
 </body>
+<footer>
+    <h6 id="browser" class="f1"></h6>
+</footer>
+<script>
+    			var res = window.navigator.userAgent;
+			if (res.includes("Edg") == true){
+				newStr = "Browser: Microsoft Edge";
+				document.getElementById("browser").innerHTML = newStr;	
+			} else if (res.includes("Firefox") == true){
+				newStr = "Browser: Firefox";
+				document.getElementById("browser").innerHTML = newStr;	
+			} else if (res.includes("Chrome") == true){
+				newStr = "Browser: Google Chrome";
+				document.getElementById("browser").innerHTML = newStr;	
+			} else {
+                newStr = "Browser Type Not Detected";
+				document.getElementById("browser").innerHTML = newStr;	
+            }
+</script>
+
 </html>
+

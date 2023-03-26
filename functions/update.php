@@ -7,7 +7,7 @@ include("shop.php");
 include("trip.php");
 include("user.php");
 include("order.php");
-
+include("item.php");
 
 switch ($_POST["funcName"]) {
     case 'Truck':
@@ -60,6 +60,17 @@ switch ($_POST["funcName"]) {
         $oTId = $_POST["oTId"];
         $rTId = $_POST["rTId"];
         updateOrder($orderId, $dIssued, $dReceived, $totPrice, $payment, $oUId, $oTId, $rTId, $connect);
+        break;
+
+    case 'Item':
+        $itemId = $_POST["itemId"];
+        $itemName = $_POST["itemName"];
+        $price = $_POST["price"];
+        $madeIn = $_POST["madeIn"];
+        $dept = $_POST["dept"];
+        $qty = $_POST["qty"];
+        $imgData = '/img/items/' . $_POST["itemImg"];
+        updateItem($itemId, $itemName, $price, $madeIn, $dept, $qty, $imgData, $connect);
         break;
 }
 ?>

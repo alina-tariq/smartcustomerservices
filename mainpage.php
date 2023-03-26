@@ -68,23 +68,23 @@
             app.config(function($routeProvider) {
                 $routeProvider
                 .when("/", {
-                    templateUrl : "home.html",
+                    templateUrl : "routePages/home.html",
                     controller: "homeCtrl"
                 })
                 .when("/about", {
-                    templateUrl : "aboutus.html",
+                    templateUrl : "routePages/aboutus.html",
                     
                 })
                 .when("/contact", {
-                    templateUrl : "contact.html",
+                    templateUrl : "routePages/contact.html",
                     
                 })
                 .when("/reviews", {
-                    templateUrl : "reviews.php",
+                    templateUrl : "routePages/reviews.php",
                     
                 })
                 .when("/signIn", {
-                    templateUrl : "loginPage.php",
+                    templateUrl : "routePages/loginPage.html",
                     controller: "loginCtrl"
                 })
                 .when("/signUp", {
@@ -92,30 +92,30 @@
                     
                 }) 
                 .when("/cart", {
-                    templateUrl : "cart.php",
+                    templateUrl : "routePages/cart.html",
                     controller : "cartCtrl"
                     
                 })
                 .when("/insert", {
-                    templateUrl : "insert.html",
+                    templateUrl : "routePages/insert.html",
                     controller : "inCtrl"
                 }) 
                 .when("/delete", {
-                    templateUrl : "delete.html",
+                    templateUrl : "routePages/delete.html",
                     controller: "delCtrl"
                 }) 
                 .when("/update", {
-                    templateUrl : "update.html",
+                    templateUrl : "routePages/update.html",
                     controller : "upCtrl"
                     
                 }) 
                 .when("/select", {
-                    templateUrl : "select.html",
+                    templateUrl : "routePages/select.html",
                     controller: "selCtrl"
                     
                 }) 
                 .when("/search", {
-                    templateUrl : "search.html",
+                    templateUrl : "routePages/search.html",
                     controller: "searchCtrl"
                 }) 
             });
@@ -167,12 +167,14 @@
                     let arr = [];
                     for (var i=0; i<x.length; i++){
                         let y = x[i].split('=')[1];
+                        if (y.length < 5){
                         arr.push(y);
+                        }
                     }
                     console.log(arr);
                     jQuery.ajax({
                         type: "POST",
-                        url: "handleItems.php",
+                        url: "functions/handleItems.php",
                         dataType: "json",
                         data: {tablename : 'items',
                             values : arr
@@ -200,7 +202,7 @@
                     var availCode = document.getElementById("avail_code").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "insert.php",
+                        url: "functions/insert.php",
                         data: {funcName: 'Truck',
                                 truckId: truckId,
                                 truckCode: truckCode,
@@ -215,7 +217,7 @@
                     var price = document.getElementById("price").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "insert.php",
+                        url: "functions/insert.php",
                         data: {funcName: 'Shop',
                                 rec_id: rec_id,
                                 st_code: st_code,
@@ -233,7 +235,7 @@
                     var tPrice = document.getElementById("tPrice").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "insert.php",
+                        url: "functions/insert.php",
                         data: {funcName: 'Trip',
                                 tripId: tripId,
                                 srcCode: srcCode,
@@ -260,7 +262,7 @@
                     var uEmail = document.getElementById("uEmail").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "insert.php",
+                        url: "functions/insert.php",
                         data: {funcName: 'User',
                                 uId : uId,
                                 uName: uName,
@@ -289,7 +291,7 @@
                     var rTId = document.getElementById("rTId").value;;
                     jQuery.ajax({
                         type: "POST",
-                        url: "insert.php",
+                        url: "functions/insert.php",
                         data: {funcName: 'Order',
                                 orderId : orderId,
                                 dIssued: dIssued,
@@ -332,7 +334,7 @@
                     var availCode = document.getElementById("avail_code").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "update.php",
+                        url: "functions/update.php",
                         data: {funcName: 'Truck',
                                 truckId: truckId,
                                 truckCode: truckCode,
@@ -347,7 +349,7 @@
                     var price = document.getElementById("price").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "update.php",
+                        url: "functions/update.php",
                         data: {funcName: 'Shop',
                                 rec_id: rec_id,
                                 st_code: st_code,
@@ -364,7 +366,7 @@
                     var tPrice = document.getElementById("tPrice").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "update.php",
+                        url: "functions/update.php",
                         data: {funcName: 'Trip',
                                 tripId: tripId,
                                 srcCode: srcCode,
@@ -390,7 +392,7 @@
                     var uEmail = document.getElementById("uEmail").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "update.php",
+                        url: "functions/update.php",
                         data: {funcName: 'User',
                                 uId : uId,
                                 uName: uName,
@@ -418,7 +420,7 @@
                     var rTId = document.getElementById("rTId").value;;
                     jQuery.ajax({
                         type: "POST",
-                        url: "update.php",
+                        url: "functions/update.php",
                         data: {funcName: 'Order',
                                 orderId : orderId,
                                 dIssued: dIssued,
@@ -439,7 +441,7 @@
                     var tableSelected = document.getElementById("tableSelect").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "delete.php",
+                        url: "functions/delete.php",
                         data: { id : id,
                                 tableSelect : tableSelected
                         }
@@ -453,7 +455,7 @@
                     var type = document.getElementById("valConfirm").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "search.php",
+                        url: "functions/search.php",
 
                         data: { id : id,
                                 type : type
@@ -498,7 +500,7 @@
                     var password = document.getElementById("password").value;
                     jQuery.ajax({
                         type: "POST",
-                        url: "login.php",
+                        url: "functions/login.php",
                         dataType: "json",
                         data: {username: username,
                                 password: password
@@ -528,7 +530,7 @@
                     }
                     jQuery.ajax({
                         type: "POST",
-                        url: "select.php",
+                        url: "functions/select.php",
                         dataType: "json",
                         data: {tablename: 'users',
                                 values : array
@@ -572,7 +574,7 @@
                     }
                     jQuery.ajax({
                         type: "POST",
-                        url: "select.php",
+                        url: "functions/select.php",
                         dataType: "json",
                         data: {tablename: 'orders',
                                 values : array
@@ -616,7 +618,7 @@
                     }
                     jQuery.ajax({
                         type: "POST",
-                        url: "select.php",
+                        url: "functions/select.php",
                         dataType: "json",
                         data: {tablename: 'shopping',
                                 values : array
@@ -660,7 +662,7 @@
                     }
                     jQuery.ajax({
                         type: "POST",
-                        url: "select.php",
+                        url: "functions/select.php",
                         dataType: "json",
                         data: {tablename: 'trucks',
                                 values : array
@@ -704,7 +706,7 @@
                     }
                     jQuery.ajax({
                         type: "POST",
-                        url: "select.php",
+                        url: "functions/select.php",
                         dataType: "json",
                         data: {tablename: 'trips',
                                 values : array
@@ -746,7 +748,7 @@
                     var array=["item_id", "item_name", "price","item_img"];
                     jQuery.ajax({
                         type: "POST",
-                        url: "getItems.php",
+                        url: "functions/getItems.php",
                         dataType: "json",
                         data: {tablename : 'items',
                             values : array

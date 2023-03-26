@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row d_flex">
+         <p>User:</p>
+             <form>
+                 <input type="checkbox" name="user" id="user_id" value="user_id">
+                 <label for="user_id">User_Id</label>
+                 <input type="checkbox" name="user" id="uName" value="uName">
+                 <label for="uName">uName</label>
+                 <input type="checkbox" name="user" id="phone" value="phone">
+                 <label for="phone">Phone</label>
+                 <input type="checkbox" name="user" id="uEmail" value="Email">
+                 <label for="uEmail">Email</label>
+                 <input type="checkbox" name="user" id="uAddress" value="uAddress">
+                 <label for="uAddress">uAddress</label>
+                 <input type="checkbox" name="user" id="city" value="city">
+                 <label for="city">City</label>
+                 <input type="checkbox" name="user" id="province" value="province">
+                 <label for="province">Province</label>
+                 <input type="checkbox" name="user" id="Postal_Code" value="postal_code">
+                 <label for="Postal_Code">Postal Code</label>
+                 <input type="checkbox" name="user" id="login_Id" value="login_id">
+                 <label for="login_Id">Login ID</label>
+                 <input type="checkbox" name="user" id="uPassword" value="uPassword">
+                 <label for="uPassword">Password</label>
+                 <input type="checkbox" name="user" id="Balance" value="Balance">
+                 <label for="balance">Balance</label>
+                 <input type="checkbox" name="user" id="Account_Type" value="Account_Type">
+                 <label for="Account_Type">Account Type</label>
+                 <button ng-click="selUser()">Submit</button>
+             </form>
+     </div>
+     
+     <div class="row d_flex">
+        <p>Order:</p>
+            <form>
+                <input type="checkbox" name="order" id="order_id" value="order_id">
+                <label for="order_id">Order_Id</label>
+                <input type="checkbox" name="order" id="Date_Issued" value="Date_Issued">
+                <label for="Date_Issued">Date_Issued</label>
+                <input type="checkbox" name="order" id="Date_Received" value="Date_Received">
+                <label for="Date_Received">Date_Received</label>
+                <input type="checkbox" name="order" id="total_Price" value="total_price">
+                <label for="total_Price">Total Price</label>
+                <input type="checkbox" name="order" id="payment_code" value="payment_code">
+                <label for="payment_code">Payment Code</label>
+                <input type="checkbox" name="order" id="user_id" value="user_id">
+                <label for="user_id">User Id</label>
+                <input type="checkbox" name="order" id="trip_id" value="trip_id">
+                <label for="trip_id">Trip Id</label>
+                <input type="checkbox" name="order" id="receipt_id" value="receipt_id">
+                <label for="receipt+od">Receipt Id</label>
+                <button ng-click="selOrders()">Submit</button> 	
+            </form>
+    </div>
+
+    <div class="row d_flex">
+        <p>Shopping:</p>
+            <form>
+                <input type="checkbox" name="shops" id="receipt_id" value="receipt_id">
+                <label for="receipt_id">Receipt Id</label>
+                <input type="checkbox" name="shops" id="store_code" value="store_code">
+                <label for="store_code">Store Code</label>
+                <input type="checkbox" name="shops" id="total_price" value="total_price">
+                <label for="total_price">Total Price</label> 	
+                <button ng-click="selShopping()">Submit</button> 	
+            </form>
+    </div>
+
+    <div class="row d_flex">
+        <p>Trucks</p>
+            <form>
+                <input type="checkbox" name="truck" id="truck_id" value="truck_id">
+                <label for="truck_id">Truck Id</label>
+                <input type="checkbox" name="truck" id="truck_code" value="truck_code">
+                <label for="truck_code">Truck Code</label>
+                <input type="checkbox" name="truck" id="availability_code" value="availability_code">
+                <label for="availability_code">Availability Code</label> 	
+                <button ng-click="selTruck()">Submit</button> 	
+            </form>
+    </div>
+
+    <div class="row d_flex">
+        <p>Trips</p>
+            <form>
+                <input type="checkbox" name="trip" id="trip_id" value="trip_id">
+                <label for="trip_id">Trip Id</label>
+                <input type="checkbox" name="trip" id="source_code" value="source_code">
+                <label for="source_code">Source Code</label>
+                <input type="checkbox" name="trip" id="destination_code" value="destination_code">
+                <label for="destination_code">Destination Code:</label>
+                <input type="checkbox" name="trip" id="distance" value="distance">
+                <label for="distance">Distance</label>
+                <input type="checkbox" name="trip" id="truck_id" value="truck_id">
+                <label for="truck_id">Truck Id</label>
+                <input type="checkbox" name="trip" id="Price" value="Price">
+                <label for="Price">Price</label> 	 	
+                <button ng-click="selTrip()">Submit</button> 		
+            </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row d_flex" id="conTable"></div>
+</div>

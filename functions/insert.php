@@ -8,7 +8,6 @@ include("trip.php");
 include("user.php");
 include("order.php");
 include("item.php");
-print_r($_FILES["itemImg"]);
 switch ($_POST["funcName"]) {
     case 'Truck':
         $truckId = $_POST["truckId"];
@@ -66,11 +65,12 @@ switch ($_POST["funcName"]) {
         $itemId = $_POST["itemId"];
         $itemName = $_POST["itemName"];
         $price = $_POST["price"];
+        $discount_price = $_POST["discount_price"];
         $madeIn = $_POST["madeIn"];
         $dept = $_POST["dept"];
         $qty = $_POST["qty"];
         $imgData = '/img/items/' . $_POST["itemImg"];
-        insertItem($itemId, $itemName, $price, $madeIn, $dept, $qty, $imgData, $connect);
+        insertItem($itemId, $itemName, $price, $discount_price, $madeIn, $dept, $qty, $imgData, $connect);
         break;
 }
 ?>

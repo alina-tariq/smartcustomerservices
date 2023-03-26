@@ -58,6 +58,7 @@
             <li id="signIn"><a href="#!signIn">Sign In</a></li>
             <li id="signUp"><a href="#!signUp">Sign Up</a></li>
             <li id="signOut" style="display:none;"><a href="#!signOut">Sign Out</a></li>
+            <li id="premium" style="display:none;"><a href="#!premium">Premium</a></li>
             <li><a ondrop="drop(event)" ondragover="allowDrop(event)" href="#!cart">Cart</a></li>
         </ul>
 
@@ -122,6 +123,10 @@
                 .when("/search", {
                     templateUrl : "routePages/search.html",
                     controller: "searchCtrl"
+                }) 
+                .when("/premium", {
+                    templateUrl : "routePages/premium.html",
+                    controller: "premCtrl"
                 }) 
             });
             app.controller("cartCtrl", function ($scope) {
@@ -317,10 +322,11 @@
                     formData.append("itemId", fd[0]['value']);
                     formData.append("itemName", fd[1]['value']);
                     formData.append("price", fd[2]['value']);
-                    formData.append("madeIn", fd[3]['value']);
-                    formData.append("dept", fd[4]['value']);
-                    formData.append("qty", fd[5]['value']);
-                    formData.append("itemImg", fd[6].files[0]['name']);
+                    formData.append("discount_price", fd[3]['value'])
+                    formData.append("madeIn", fd[4]['value']);
+                    formData.append("dept", fd[5]['value']);
+                    formData.append("qty", fd[6]['value']);
+                    formData.append("itemImg", fd[7].files[0]['name']);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/insert.php",
@@ -444,10 +450,11 @@
                     formData.append("itemId", fd[0]['value']);
                     formData.append("itemName", fd[1]['value']);
                     formData.append("price", fd[2]['value']);
-                    formData.append("madeIn", fd[3]['value']);
-                    formData.append("dept", fd[4]['value']);
-                    formData.append("qty", fd[5]['value']);
-                    formData.append("itemImg", fd[6].files[0]['name']);
+                    formData.append("discount_price", fd[3]['value']);
+                    formData.append("madeIn", fd[4]['value']);
+                    formData.append("dept", fd[5]['value']);
+                    formData.append("qty", fd[6]['value']);
+                    formData.append("itemImg", fd[7].files[0]['name']);
                     console.log(fd);
                     jQuery.ajax({
                         type: "POST",
@@ -537,6 +544,11 @@
                                 document.getElementById("signOut").style.display = "block";
                                 if (arr[1] == 0) {
                                     document.getElementById("adminMenu").style.display = "block";
+                                    document.getElementById("premium").style.display = "none";
+                                } else if (arr[1] == 1){
+                                    document.getElementById("premium").style.display = "block";
+                                } else {
+                                    document.getElementById("premium").style.display = "none";
                                 }
                                 $scope.$apply(() => { $location.path('/');});
                             } else {
@@ -865,9 +877,35 @@
                     document.getElementById("signUp").style.display = "block";
                     document.getElementById("adminMenu").style.display = "none";
                     document.getElementById("signOut").style.display = "none";
+                    document.getElementById("premium").style.display = "none";
                     $scope.$applyAsync(() => { $location.path('/');});
                 }
             }]);
+
+            app.controller("premCtrl", ['$scope', '$location', function($scope, $location){
+                $scope.becomePremium = function(){
+                    var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
+                    var dateRe = new RegExp("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/");
+                    var cvcRe = new RegExp("[0-9]{3}");
+                    var creditNum = document.getElementById("cNum").value;
+                    var expDate = document.getElementById("eDate").value;
+                    var cvc = document.getElementById("cvc_code").value;
+                    if (creditRe.test(creditNum) && dateRe.test(expDate) && cvcRe.test(cvc)){
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/premium.php"
+                     });
+                    document.getElementById("premium").style.display = "none";
+                    $scope.$applyAsync(() => { $location.path('/');});
+                } else {
+                    document.getElementById("cNum").value = "";
+                    document.getElementById("eDate").value = "";
+                    document.getElementById("cvc_code").value = "";
+                    document.getElementById("inc").innerHTML = "Please Enter Valid Payment Information";
+                }
+            }
+            }]);
+            
 
         </script>
 

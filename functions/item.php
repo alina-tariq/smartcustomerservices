@@ -1,10 +1,10 @@
 <?php 
 
-function insertItem($itemId, $itemName, $price, $madeIn, $dept, $qty, $imgData, $connect){
+function insertItem($itemId, $itemName, $price, $discount_price, $madeIn, $dept, $qty, $imgData, $connect){
     $insertItem = "INSERT INTO ITEMS 
-                (ITEM_ID, ITEM_NAME, PRICE, MADE_IN, DEPARTMENT_CODE, QTY, ITEM_IMG) 
+                (ITEM_ID, ITEM_NAME, PRICE, DISCOUNT_PRICE, MADE_IN, DEPARTMENT_CODE, QTY, ITEM_IMG) 
                 VALUES 
-                ($itemId, '$itemName', $price, '$madeIn', $dept, $qty, '$imgData');";
+                ($itemId, '$itemName', $price, $discount_price, '$madeIn', $dept, $qty, '$imgData');";
 
     try {
         $result = mysqli_query($connect, $insertItem);
@@ -14,9 +14,9 @@ function insertItem($itemId, $itemName, $price, $madeIn, $dept, $qty, $imgData, 
     }
 }
 
-function updateItem($itemId, $itemName, $price, $madeIn, $dept, $qty, $imgData, $connect){
+function updateItem($itemId, $itemName, $price, $discount_price, $madeIn, $dept, $qty, $imgData, $connect){
     $updateItem = "UPDATE ITEMS SET ITEM_NAME = '$itemName', 
-    PRICE = $price, MADE_IN = '$madeIn', DEPARTMENT_CODE = $dept, QTY = $qty, 
+    PRICE = $price, DISCOUNT_PRICE = $discount_price, MADE_IN = '$madeIn', DEPARTMENT_CODE = $dept, QTY = $qty, 
     ITEM_IMG = '$imgData' WHERE ITEM_ID = $itemId;";
 
     try {

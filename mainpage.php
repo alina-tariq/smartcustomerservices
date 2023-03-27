@@ -129,7 +129,7 @@
                     controller: "premCtrl"
                 }) 
             });
-            app.controller("cartCtrl", function ($scope) {
+            app.controller("cartCtrl", ['$scope', '$route', function($scope, $route) {
                 $scope.initMap = function(){
                     var warehouseLoc = document.getElementById("warehouse").value;
                     var uLocation = document.getElementById("uLocation").value;
@@ -175,13 +175,23 @@
                 $scope.readCookies = function(){
                     let x = document.cookie.split(';');
                     let arr = [];
+                    let keys={};
+                    var count=0;
                     for (var i=0; i<x.length; i++){
                         let y = x[i].split('=')[1];
                         if (y.length < 5){
                         arr.push(y);
                         }
                     }
-                    console.log(arr);
+                    document.cookie.split(';').forEach(function(e){
+                        
+                        let[key,value] = e.split('=');
+                        if (value.length < 5){
+                        keys[count] = "itemId" + key.replace(/\D/g,'');
+                        count = +count + 1;
+                        }
+                    });
+                    console.log(keys);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/handleItems.php",
@@ -189,22 +199,48 @@
                         data: {tablename : 'items',
                             values : arr
                         },  success: function(phpAsJson){
-
+                            var count=0;
                             var container = document.getElementById("invoice");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
+                            var total = 0;
                             console.log(arr);
                             arr.forEach((item)=>{
-                                console.log(item);
+                                
                                 let para = document.createElement("p");
                                 let vals = Object.values(item);
                                 para.innerText = "Product Id: " + vals[0] + " Product: " + vals[1] + " Price: " + vals[2];
+                                total = +total + +vals[2];
+                                
                                 container.appendChild(para);
+                                let check = document.createElement("input");
+                                check.type = "checkbox";
+                                check.name = "delete";
+                                check.id = keys[count];
+                                count = +count + 1;
+                                container.appendChild(check);
                              });
+                             let para = document.createElement("p");
+                             total = total.toFixed(2);
+                             para.innerText = "Total: " + total;
+                             para.id = "total";
+                             container.appendChild(para);
                         }
                     });
 
+            }
+                $scope.deleteCookie = function(){
+                    var array = [];
+                    var checkboxes = document.querySelectorAll('input[name="delete"]:checked');
+                    for (var i=0; i<checkboxes.length;i++){
+                        array.push(checkboxes[i].id);
+                    }
+                    console.log(array);
+                    for (var j=0; j<array.length;j++){
+                        document.cookie = array[j] + "=; Path=/CPS630Project; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=localhost;";
+                    }
+                    $route.reload();
                 }
-            });
+            }]);
             app.controller("inCtrl", function($scope){
                 $scope.inTruck = function(){
                     var truckId = document.getElementById("truck_id").value;

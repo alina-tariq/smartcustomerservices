@@ -361,13 +361,13 @@
                     formData.append("madeIn", fd[4]['value']);
                     formData.append("dept", fd[5]['value']);
                     formData.append("qty", fd[6]['value']);
-                    formData.append("itemImg", fd[7].files[0]['name']);
+                    formData.append("itemImg", fd[7].files[0]);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/insert.php",
                         data: formData,
                         contentType: false,
-                        processData: false
+                        processData: false,
                     });
                 }
             });
@@ -489,8 +489,7 @@
                     formData.append("madeIn", fd[4]['value']);
                     formData.append("dept", fd[5]['value']);
                     formData.append("qty", fd[6]['value']);
-                    formData.append("itemImg", fd[7].files[0]['name']);
-                    console.log(fd);
+                    formData.append("itemImg", fd[7].files[0]);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/update.php",

@@ -70,8 +70,13 @@ switch ($_POST["funcName"]) {
         $madeIn = $_POST["madeIn"];
         $dept = $_POST["dept"];
         $qty = $_POST["qty"];
-        $imgData = '/img/items/' . $_POST["itemImg"];
+        $imgData = '/img/items/' . $_FILES["itemImg"]["name"];
+        $imgTemp = $_FILES["itemImg"]["tmp_name"];
         updateItem($itemId, $itemName, $price, $discount_price, $madeIn, $dept, $qty, $imgData, $connect);
+        
+        // move image locally
+        $imagePath = '/Applications/XAMPP/htdocs/CPS630Project/img/items/' . $_FILES["itemImg"]["name"];
+        move_uploaded_file($imgTemp, $imagePath);
         break;
 }
 ?>

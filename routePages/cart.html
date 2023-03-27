@@ -28,20 +28,23 @@
     <div class="row d_flex" style="display:none" id="printInvoice">
         <div class="col-sm-8" id="outInv">
             <h1>Invoice</h1>
-            <p id="address"></p>
-            <p id="branch"></p>
-            <p id="distance"></p>
-            <p id="dayDelivered"></p>
-            <p id="deliveryTime"></p>
+            Destination Postal Code: <p id="address"></p>
+            Warehouse Postal Code: <p id="branch"></p>
+            Distance: <p id="distance"></p>
+            Delivery Date: <p id="dayDelivered"></p>
+            Delivery Time: <p id="deliveryTime"></p>
             
         </div>
         
         <div class="col-sm-4">
             <div id="map"></div>
             <form>
+                <br>
+                <h6>Enter payment information below:</h6>
                 <input type="text" placeholder="Credit Card Number" id="cNum" required>
                 <input type="text" placeholder="Expiry Date (MM/YY)" id="eDate" required>
                 <input type="text" placeholder="CVC" id="cvc_code" required>
+                <br><br>
                 <input type="submit" ng-click="confirmOrder()" value="Submit"></input>
             </form>
             <p id="confirmLogin"></p>

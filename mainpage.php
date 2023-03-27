@@ -129,8 +129,11 @@
                     templateUrl : "routePages/premium.html",
                     controller: "premCtrl"
                 }) 
+                .when("/confirm", {
+                    templateUrl : "routePages/confirm.html",
+                }) 
             });
-            app.controller("cartCtrl", ['$scope', '$route', function($scope, $route) {
+            app.controller("cartCtrl", ['$scope', '$route','$location', function($scope, $route, $location) {
                 $scope.initMap = function(){
                     var warehouseLoc = document.getElementById("warehouse").value;
                     var uLocation = document.getElementById("uLocation").value;
@@ -343,6 +346,16 @@
                                 destination_code: uLocation,
                                 trip_price: 5.49,
                                 date_issued: date,
+                                success: function(){
+                                    var cookies = document.cookie.split(';');
+                                    for (var i = 0; i < cookies.length; i++){
+                                        var cookie = cookies[i];
+                                        var eqPos = cookie.indexOf("=");
+                                        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                                        document.cookie = name + "=; Path=/CPS630Project; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=localhost;";
+                                    }
+                                    $scope.$applyAsync(() => { $location.path('/confirm');});
+                                }
                         }
                     });
                 }

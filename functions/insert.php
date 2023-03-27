@@ -8,6 +8,7 @@ include("trip.php");
 include("user.php");
 include("order.php");
 include("item.php");
+
 switch ($_POST["funcName"]) {
     case 'Truck':
         $truckId = $_POST["truckId"];
@@ -34,7 +35,6 @@ switch ($_POST["funcName"]) {
         break;
 
     case 'User':
-        $uId = $_POST["uId"];
         $uName = $_POST["uName"];
         $uLogin = $_POST["uLogin"];
         $phone = $_POST["phone"];
@@ -46,7 +46,7 @@ switch ($_POST["funcName"]) {
         $uBalance = $_POST["uBalance"];
         $uAcc = $_POST["uAcc"];
         $uEmail = $_POST["uEmail"];
-        insertUser($uId, $uName, $uLogin, $phone, $uAddress, $uCity, $uProvince, $uPost, $uPassword, $uBalance, $uAcc, $uEmail, $connect);
+        insertUser($uName, $uLogin, $phone, $uAddress, $uCity, $uProvince, $uPost, $uPassword, $uBalance, $uAcc, $uEmail, $connect);
         break;
 
     case 'Order':

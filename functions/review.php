@@ -1,6 +1,6 @@
 <?php include('connInfo.php');
 $connect = connect();
-function insertReview($itemid, $rankingNumber, $reviewTxt, $connect){
+function insertReview($itemId, $rankingNumber, $reviewTxt, $connect){
     $insertReview = "INSERT INTO REVIEWS
                 (ITEM_ID, RANKING_NUMBER,REVIEW_TXT)
                 VALUES

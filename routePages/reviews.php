@@ -47,41 +47,8 @@
      <br>
      <div class="row d_flex">
         <!-- needs to post all items to selectively show reviews with showReviews() in mainpage.php-->
-         <div id="reviewList">
+         <div id="reviewList" ng-init="drawReviewTable()">
             <h3> Reviews </h3>
-            <?php include('../functions/connInfo.php');
-
-                $connect = connect();
-                $searchQuery = "SELECT * FROM REVIEWS";
-                $fields = array();
-                $fields[] = "Item ID/Order ID";
-                $fields[] = "Ranking";
-                $fields[] = "Review";
-                $sqlFields = array();
-                $sqlFields[] = "ITEM_ID";
-                $sqlFields[] = "ORDER_ID";
-                $sqlFields[] = "RANKING_NUMBER";
-                $sqlFields[] = "REVIEW_TXT";
-                try {
-                    $result = mysqli_query($connect, $searchQuery);
-                    echo "<table border='1'><tr>";
-					foreach ($fields as $field) {
-						echo "<th>" . $field . "</th>";
-					}
-					echo "</tr>";
-                    while($row = $result->fetch_assoc()){
-                        echo "<tr>";
-						foreach ($sqlFields as $sqlField) {
-                            if (strlen($row[$sqlField]) != 0) {
-							    echo "<td>" . $row[$sqlField] . "</td>";
-                            }
-						}
-						echo "</tr>";
-                    }
-                } catch (Exception $ex) {
-                    echo $ex->getMessage();
-                }
-            ?>
          </div>
      </div>
 </div>

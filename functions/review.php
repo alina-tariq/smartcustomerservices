@@ -50,11 +50,13 @@ if (isset($_POST['reviewTxt'])) {
     $reviewTxt = $_POST['reviewTxt'];
     $rankingNumber = $_POST['rankingNumber'];
     $itemId = $_POST['itemId'];
+    $reviewTxt = preg_replace("#[[:punct:]]#", "", $reviewTxt);
     insertReview($itemId, $rankingNumber, $reviewTxt, $connect);
 } else if (isset($_POST['orderReviewTxt'])) {
     $reviewTxt = $_POST['orderReviewTxt'];
     $rankingNumber = $_POST['rankingNumber'];
     $itemId = $_POST['itemId'];
+    $reviewTxt = preg_replace("#[[:punct:]]#", "", $reviewTxt);
     insertOrderReview($itemId, $rankingNumber, $reviewTxt, $connect);
 }
 ?>

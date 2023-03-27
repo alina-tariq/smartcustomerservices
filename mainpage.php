@@ -90,7 +90,8 @@
                     controller: "loginCtrl"
                 })
                 .when("/signUp", {
-                    templateUrl : "signUp.php",
+                    templateUrl : "routePages/signup.html",
+                    controller: "signupCtrl"
                     
                 }) 
                 .when("/signOut", {
@@ -258,7 +259,6 @@
                 }
 
                 $scope.inUser = function(){
-                    var uId = document.getElementById("uId").value;
                     var uName = document.getElementById("uName").value;
                     var uLogin = document.getElementById("uLogin").value;
                     var phone = document.getElementById("phone").value;
@@ -270,11 +270,21 @@
                     var uBalance = document.getElementById("uBalance").value;
                     var uAcc = document.getElementById("uAcc").value;
                     var uEmail = document.getElementById("uEmail").value;
+                    console.log(uName);
+                    console.log(uLogin);
+                    console.log(phone);
+                    console.log(uAddress);
+                    console.log(uCity);
+                    console.log(uProvince);
+                    console.log(uPost);
+                    console.log(uPassword);
+                    console.log(uBalance);
+                    console.log(uAcc);
+                    console.log(uEmail);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/insert.php",
                         data: {funcName: 'User',
-                                uId : uId,
                                 uName: uName,
                                 uLogin : uLogin,
                                 phone : phone,

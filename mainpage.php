@@ -82,7 +82,7 @@
                     
                 })
                 .when("/reviews", {
-                    templateUrl : "routePages/reviews.html",
+                    templateUrl : "routePages/reviews.php",
                     controller: "reviewCtrl"
                 })
                 .when("/signIn", {

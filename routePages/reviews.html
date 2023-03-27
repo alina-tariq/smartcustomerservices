@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row d_flex">
+         <p>Enter A Review</p>
+         <div>
+             <form>
+                <!-- needs to post all items in database dynamically as a select list -->
+                 <select ng-init="setOptions()" id="itemName" required>
+                    
+                 </select>
+                 <select id="rankingNumber" required>
+                    <option value="0">0/5</option>
+                    <option value="1">1/5</option>
+                    <option value="2">2/5</option>
+                    <option value="3">3/5</option>
+                    <option value="4">4/5</option>
+                    <option value="5">5/5</option>
+                 </select>
+                 <input type="textbox" placeholder="Enter a review here" id="reviewTxt" required>
+                 <button ng-click="insertReview()">Submit</button>
+             </form>
+         </div>
+     </div>
+     <div class="row d_flex">
+        <!-- needs to post all items to selectively show reviews with showReviews() in mainpage.php-->
+         <div id="reviewList"></div>
+     </div>
+</div>

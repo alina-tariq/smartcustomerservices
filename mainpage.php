@@ -82,8 +82,8 @@
                     
                 })
                 .when("/reviews", {
-                    templateUrl : "routePages/reviews.php",
-                    
+                    templateUrl : "routePages/reviews.html",
+                    controller: "reviewCtrl"
                 })
                 .when("/signIn", {
                     templateUrl : "routePages/loginPage.html",
@@ -362,6 +362,43 @@
 
                 }
             }]);
+
+            app.controller("reviewCtrl", function($scope){
+                $scope.setOptions = function(){
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/reviewItems.php",
+                        success: function(phpAsJson){
+                            var arr = JSON.parse(phpAsJson);
+                            console.log(arr);
+                            var container = document.getElementById("itemName");
+                            arr.forEach((item)=>{
+                                let opt = document.createElement("option");
+                                let vals = Object.values(item);
+                                opt.value = vals[0];
+                                opt.innerHTML = vals[1];
+                                container.appendChild(opt);
+                            });
+                        }
+                    });
+
+                }
+
+                $scope.insertReview = function(){
+                    var item_id = document.getElementById("itemName").value;
+                    var ranking_number = document.getElementById("rankingNumber").value;
+                    var review_text = document.getElementById("reviewTxt").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/review.php",
+                        data: {tablename: 'reviews',
+                            itemId: item_id,
+                            rankingNumber: ranking_number,
+                            reviewTxt: review_text
+                       }
+                    });
+                }
+            });
             app.controller("inCtrl", function($scope){
                 $scope.inTruck = function(){
                     var truckId = document.getElementById("truck_id").value;

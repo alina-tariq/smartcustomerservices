@@ -440,6 +440,15 @@
                                 truckId: truckId,
                                 truckCode: truckCode,
                                 availCode: availCode
+                        }, success: function(truckCheck) {
+                                var arr = JSON.parse(JSON.stringify(truckCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("insertMsg").innerHTML = "Inserted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("insertMsg").innerHTML = "Error in inserting record.";
+                                }
                         }
                     });
                 }
@@ -455,6 +464,15 @@
                                 rec_id: rec_id,
                                 st_code: st_code,
                                 price: price
+                        }, success: function(shopCheck) {
+                                var arr = JSON.parse(JSON.stringify(shopCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("insertMsg").innerHTML = "Inserted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("insertMsg").innerHTML = "Error in inserting record.";
+                                }
                         }
                     });
                 }
@@ -476,6 +494,15 @@
                                 destCode: destCode,
                                 tTruckId: tTruckId,
                                 dist: dist
+                        }, success: function(tripCheck) {
+                                var arr = JSON.parse(JSON.stringify(tripCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("insertMsg").innerHTML = "Inserted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("insertMsg").innerHTML = "Error in inserting record.";
+                                }
                         }
                     });
                 }
@@ -507,6 +534,15 @@
                                 uBalance : uBalance, 
                                 uAcc : uAcc,
                                 uEmail : uEmail
+                        }, success: function(userCheck) {
+                                var arr = JSON.parse(JSON.stringify(userCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("insertMsg").innerHTML = "Inserted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("insertMsg").innerHTML = "Error in inserting record.";
+                                }
                         }
                     });
                 }
@@ -532,6 +568,15 @@
                                 oUId : oUId,
                                 oTId : oTId,
                                 rTId : rTId 
+                        }, success: function(orderCheck) {
+                                var arr = JSON.parse(JSON.stringify(orderCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("insertMsg").innerHTML = "Inserted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("insertMsg").innerHTML = "Error in inserting record.";
+                                }
                         }
                     });
                 }
@@ -551,9 +596,19 @@
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/insert.php",
-                        data: formData,
                         contentType: false,
                         processData: false,
+                        data: formData,
+                        success: function(itemCheck) {
+                            var arr = JSON.parse(JSON.stringify(itemCheck));
+                            console.log(arr);
+                            console.log(arr[1]);
+                            if (arr[1] == 1){
+                                document.getElementById("insertMsg").innerHTML = "Inserted!";
+                            } else if (arr[1] == 0) {
+                                document.getElementById("insertMsg").innerHTML = "Error in inserting record.";
+                            }
+                        }
                     });
                 }
             });
@@ -570,6 +625,15 @@
                                 truckId: truckId,
                                 truckCode: truckCode,
                                 availCode: availCode
+                        }, success: function(truckCheck) {
+                                var arr = JSON.parse(JSON.stringify(truckCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("updateMsg").innerHTML = "Updated!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("updateMsg").innerHTML = "Error in updating record.";
+                                }
                         }
                     });
                 }
@@ -585,6 +649,15 @@
                                 rec_id: rec_id,
                                 st_code: st_code,
                                 price: price
+                        }, success: function(shopCheck) {
+                                var arr = JSON.parse(JSON.stringify(shopCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("updateMsg").innerHTML = "Updated!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("updateMsg").innerHTML = "Error in updating record.";
+                                }
                         }
                     });
                 }
@@ -605,6 +678,15 @@
                                 destCode: destCode,
                                 tTruckId: tTruckId,
                                 dist: dist
+                        }, success: function(tripCheck) {
+                                var arr = JSON.parse(JSON.stringify(tripCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("updateMsg").innerHTML = "Updated!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("updateMsg").innerHTML = "Error in updating record.";
+                                }
                         }
                     });
                 }
@@ -637,6 +719,15 @@
                                 uBalance : uBalance, 
                                 uAcc : uAcc,
                                 uEmail : uEmail
+                        }, success: function(userCheck) {
+                                var arr = JSON.parse(JSON.stringify(userCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("updateMsg").innerHTML = "Updated!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("updateMsg").innerHTML = "Error in updating record.";
+                                }
                         }
                     });
                 }
@@ -661,6 +752,15 @@
                                 oUId : oUId,
                                 oTId : oTId,
                                 rTId : rTId 
+                        }, success: function(orderCheck) {
+                                var arr = JSON.parse(JSON.stringify(orderCheck));
+                                console.log(arr);
+                                console.log(arr[1]);
+                                if (arr[1] == 1){
+                                    document.getElementById("updateMsg").innerHTML = "Updated!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("updateMsg").innerHTML = "Error in updating record.";
+                                }
                         }
                     });
                 }
@@ -679,9 +779,19 @@
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/update.php",
+                        contentTpye: false,
+                        processData: false,
                         data: formData,
-                        contentType: false,
-                        processData: false
+                        success: function(itemCheck) {
+                            var arr = JSON.parse(JSON.stringify(itemCheck));
+                            console.log(arr);
+                            console.log(arr[1]);
+                            if (arr[1] == 1){
+                                document.getElementById("updateMsg").innerHTML = "Updated!";
+                            } else if (arr[1] == 0) {
+                                document.getElementById("updateMsg").innerHTML = "Error in updating record.";
+                            }
+                        }
                     });
                 }
             });

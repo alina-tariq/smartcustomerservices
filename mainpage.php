@@ -395,7 +395,36 @@
                             itemId: item_id,
                             rankingNumber: ranking_number,
                             reviewTxt: review_text
-                       }
+                       }, success: function(reviewCheck) {
+                                var arr = JSON.parse(JSON.stringify(reviewCheck));
+                                if (arr[1] == 1){
+                                    document.getElementById("reviewMsg").innerHTML = "Submitted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("reviewMsg").innerHTML = "Error in submitting review.";
+                                }
+                        }
+                    });
+                }
+
+                $scope.insertOrderReview = function(){
+                    var item_id = document.getElementById("orderId").value;
+                    var ranking_number = document.getElementById("orderRankingNumber").value;
+                    var review_text = document.getElementById("orderReviewTxt").value;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/review.php",
+                        data: {tablename: 'reviews',
+                            itemId: item_id,
+                            rankingNumber: ranking_number,
+                            orderReviewTxt: review_text
+                        }, success: function(reviewCheck) {
+                                var arr = JSON.parse(JSON.stringify(reviewCheck));
+                                if (arr[1] == 1){
+                                    document.getElementById("reviewMsg").innerHTML = "Submitted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("reviewMsg").innerHTML = "Error in submitting review.";
+                                }
+                        }
                     });
                 }
             });

@@ -303,8 +303,9 @@
                 }
 
                 $scope.confirmOrder = function(){
+                    
                     var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
-                    var dateRe = new RegExp("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/");
+                    var dateRe = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
                     var cvcRe = new RegExp("[0-9]{3}");
                     var creditNum = document.getElementById("cNum").value;
                     var expDate = document.getElementById("eDate").value
@@ -325,10 +326,13 @@
                     totalPrice = totalPrice.match(/[0-9]*\.[0-9]*/, "");
                     totalPrice = parseFloat(totalPrice);
                     totalPrice = totalPrice + 5.49;
+                    console.log("Here");
+                    console.log(creditRe.test(creditNum));
+                    console.log(dateRe.test(expDate));
+                    console.log(cvcRe.test(cvc));
                    
-
-
                     if (creditRe.test(creditNum) && dateRe.test(expDate) && cvcRe.test(cvc)){
+                        console.log("Passed Test");
                         jQuery.ajax({
                         type: "POST",
                         url: "functions/newOrder.php",
@@ -1109,7 +1113,7 @@
             app.controller("premCtrl", ['$scope', '$location', function($scope, $location){
                 $scope.becomePremium = function(){
                     var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
-                    var dateRe = new RegExp("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/");
+                    var dateRe = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
                     var cvcRe = new RegExp("[0-9]{3}");
                     var creditNum = document.getElementById("cNum").value;
                     var expDate = document.getElementById("eDate").value;

@@ -270,17 +270,6 @@
                     var uBalance = document.getElementById("uBalance").value;
                     var uAcc = document.getElementById("uAcc").value;
                     var uEmail = document.getElementById("uEmail").value;
-                    console.log(uName);
-                    console.log(uLogin);
-                    console.log(phone);
-                    console.log(uAddress);
-                    console.log(uCity);
-                    console.log(uProvince);
-                    console.log(uPost);
-                    console.log(uPassword);
-                    console.log(uBalance);
-                    console.log(uAcc);
-                    console.log(uEmail);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/insert.php",
@@ -570,6 +559,92 @@
                         }
                         
                     });
+                }
+            }]);
+
+            app.controller("signupCtrl", ['$scope', '$location', function($scope, $location){
+                $scope.signup = function() {
+                    var uName = document.getElementById("name").value;
+                    var uLogin = document.getElementById("username").value;
+                    var phone = document.getElementById("phone").value;
+                    var uAddress = document.getElementById("address").value;
+                    var uCity = document.getElementById("city").value;
+                    var uProvince = document.getElementById("province").value;
+                    var uPost = document.getElementById("postalCode").value;
+                    var uPassword = document.getElementById("pass").value;
+                    var uBalance = 0.0;
+                    var uEmail = document.getElementById("email").value;
+
+                    var confirmPassword = document.getElementById("confirmPass").value;
+                    var account = document.getElementsByName("account");
+                    var creditCard = document.getElementById("cc").value;
+                    var expiryDate = document.getElementById("expiryDate").value;
+                    var cvc = document.getElementById("cvc").value;
+
+                    for (var type of account) {
+                        if (type.checked) {
+                            var accountType = type.value;
+                        }
+                    }
+
+                    const phoneCheck = new RegExp("[1-9][0-9]{2}[ -]?[0-9]{3}[ -]?[0-9]{4}");
+                    const postalCodeCheck = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY][ -]?\d[ABCEGHJKLMNPRSTVXY]\d$/i);
+                    const creditCheck = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
+                    const expiryCheck = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
+                    const cvcCheck = new RegExp("[0-9]{3}");
+                    
+                    var verifyPhone = phoneCheck.test(phone);
+                    var verifyPostalCode = postalCodeCheck.test(uPost);
+                    var verifyPass = uPassword == confirmPassword 
+                    var verifyPassLength = uPassword.length >= 6;
+                    var verifyCC = creditCheck.test(creditCard);
+                    var verifyExp = expiryCheck.test(expiryDate);
+                    var verifyCvc = cvcCheck.test(cvc);
+                    
+                    if (!verifyPhone) {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Invalid phone number!";
+                    } else if (!verifyPostalCode) {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Invalid postal code!";
+                    } else if (!verifyPass) {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Passwords do not match!";
+                    } else if (!verifyPassLength) {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Password must be at least 6 characters!";
+                    } else if (!verifyCC || !verifyExp || !verifyCvc) {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Invalid payment information!";
+                    } else {
+                        phone = phone.replace(/-|\s/g,"");
+                        uPost = uPost.replace(/-|\s/g,"");
+
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "functions/signup.php",
+                            data: {
+                                uName: uName,
+                                uLogin : uLogin,
+                                phone : phone,
+                                uAddress : uAddress,
+                                uCity : uCity,
+                                uProvince : uProvince,
+                                uPost : uPost,
+                                uPassword : uPassword,
+                                uBalance : uBalance, 
+                                uAcc : accountType,
+                                uEmail : uEmail
+                            }, success: function(signUpCheck) {
+                                var arr = JSON.parse(JSON.stringify(signUpCheck));
+                                if (arr[1] == 1){
+                                    document.getElementById("inc").innerHTML = "Sign up successful!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("inc").innerHTML = "Error in signing up.";
+                                }
+                            }
+                        });
+                    }
                 }
             }]);
             

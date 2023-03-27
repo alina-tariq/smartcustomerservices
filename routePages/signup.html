@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row d_flex">
+        <form>
+            <h6>Sign Up Form</h6>
+            <label>Name:</label>
+            <input type="text" placeholder="Full Name" id="name" required>
+            <br>
+            <label>Email:</label>
+            <input type="text" placeholder="Email" id="email" required>
+            <br>
+            <label>Phone:</label>
+            <input type="text" placeholder="Phone Number" id="phone" required>
+            <br>
+            <label>Address:</label>
+            <input type="text" placeholder="Address" id="address" required>
+            <br>
+            <label>City:</label>
+            <input type="text" placeholder="City" id="city" required>
+            <br>
+            <label>Province:</label>
+            <input type="text" placeholder="Province" id="province" required>
+            <br>
+            <label>Postal Code:</label>
+            <input type="text" placeholder="Postal Code" id="postalCode" required>
+            <br>
+            <label>Username:</label>
+            <input type="text" placeholder="Username" id="username" required>
+            <br>
+            <label>Password (at least 6 characters):</label>
+            <input type="password" placeholder="Password" id="pass" required>
+            <br>
+            <label>Confirm Password:</label>
+            <input type="password" placeholder="Confirm Password" id="confirmPass" required>
+            <br>
+            <label>Account Type:</label>
+            <input type="radio" id="standard" name="account" value="1" required>Standard
+            <input type="radio" id="premium" name="account" value="2">Premium
+            <br>
+            <br>
+            <h6>Payment Information</h6>
+            <label>Credit Card:</label>
+            <input type="text" placeholder="Credit Card Number" id="cc" required>
+            <br>
+            <label>Expiry Date:</label>
+            <input type="text" placeholder="Expiry Date (MM/YY)" id="expiryDate" required>
+            <br>
+            <label>CVC:</label>
+            <input type="text" placeholder="CVC" id="cvc" required>
+            <br>
+            <br>
+            <button ng-click="signup()">Submit</button>
+        </form>
+    </div>
+    
+    <div class="row d_flex">
+        <br>
+        <p id="inc"></p>
+    </div>
+</div>

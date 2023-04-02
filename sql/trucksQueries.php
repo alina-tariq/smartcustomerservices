@@ -1,4 +1,4 @@
-<?php include('connInfo.php');
+<?php require_once ('connInfo.php');
 
 mysqli_report(MYSQLI_REPORT_ALL);
 $connect = connect();

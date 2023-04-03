@@ -4,7 +4,7 @@ $conn = connect();
 
 $sql = "SELECT UNAME, UPASSWORD, ACCOUNT_TYPE, USER_ID FROM USERS WHERE LOGIN_ID = ?";
 $username = $_POST["username"];
-$password = $_POST["password"];
+$password = md5($_POST["password"]);
 $arr = array();
 
 if ($stmt = mysqli_prepare($conn, $sql)) {

@@ -1,6 +1,6 @@
 <!-- remove // from line 3 and refresh page to initalize database, add back // afterwards and refresh again to continue
     **assumes database is called 'scs' -->
-<?php// require_once "sql/initializeDatabase.php"; ?>
+<!-- <?php require_once "sql/initializeDatabase.php"; ?> -->
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>

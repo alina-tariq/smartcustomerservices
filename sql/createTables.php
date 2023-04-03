@@ -1,5 +1,7 @@
 <?php require_once ("connInfo.php");
+mysqli_report(MYSQLI_REPORT_ALL);
 $connect = connect();
+
 $createTable = "CREATE TABLE IF NOT EXISTS ITEMS 
 (
   ITEM_ID INT NOT NULL 
@@ -15,6 +17,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS ITEMS
 ";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "items created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS USERS 
@@ -28,13 +31,14 @@ $createTable = "CREATE TABLE IF NOT EXISTS USERS
 , PROVINCE VARCHAR(2) NOT NULL 
 , POSTAL_CODE VARCHAR(6) NOT NULL 
 , LOGIN_ID VARCHAR(20) UNIQUE NOT NULL
-, UPASSWORD VARCHAR(20) NOT NULL 
+, UPASSWORD VARCHAR(100) NOT NULL 
 , BALANCE FLOAT NOT NULL
 , ACCOUNT_TYPE INT NOT NULL 
 , PRIMARY KEY (USER_ID)
 );";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "users created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS TRUCKS 
@@ -46,6 +50,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS TRUCKS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "trucks created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS SHOPPING 
@@ -57,6 +62,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS SHOPPING
 );";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "shopping created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS TRIPS 
@@ -72,6 +78,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS TRIPS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "trips created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS ORDERS 
@@ -91,6 +98,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS ORDERS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "orders created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS REVIEWS 
@@ -106,4 +114,5 @@ $createTable = "CREATE TABLE IF NOT EXISTS REVIEWS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
+    echo "reviews created <br>";
 } catch (Exception $e) { echo $e->getMessage();}

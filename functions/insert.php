@@ -44,7 +44,7 @@ switch ($_POST["funcName"]) {
         $uCity = $_POST["uCity"];
         $uProvince = $_POST["uProvince"];
         $uPost = $_POST["uPost"];
-        $uPassword = md5($_POST["uPassword"]);
+        $uPassword = $_POST["uPassword"];
         $uBalance = $_POST["uBalance"];
         $uAcc = $_POST["uAcc"];
         $uEmail = $_POST["uEmail"];

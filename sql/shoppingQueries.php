@@ -12,9 +12,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 1 inserted\n";
+    //echo "shopping 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -24,9 +24,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 2 inserted\n";
+    //echo "shopping 2 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -36,9 +36,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 3 inserted\n";
+    //echo "shopping 3 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -48,9 +48,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 4 inserted\n";
+    //echo "shopping 4 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -60,9 +60,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 5 inserted\n";
+    //echo "shopping 5 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -72,9 +72,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 6 inserted\n";
+    //echo "shopping 6 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -84,9 +84,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 7 inserted\n";
+    //echo "shopping 7 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -96,9 +96,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 8 inserted\n";
+    //echo "shopping 8 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertShopping = "INSERT INTO SHOPPING 
@@ -108,9 +108,9 @@ $insertShopping = "INSERT INTO SHOPPING
 
 try {
     $result = mysqli_query($connect, $insertShopping);
-    echo "shopping 9 inserted\n";
+    //echo "shopping 9 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 ?>

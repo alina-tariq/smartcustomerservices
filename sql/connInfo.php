@@ -10,7 +10,7 @@ function connect() {
     if ($conn->connect_error) {
         die("Connection failed!");
     } else {
-        echo "Connected\n";
+        //echo "Connected\n";
         return $conn;
     }
 }

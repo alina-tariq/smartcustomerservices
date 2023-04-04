@@ -2,7 +2,7 @@
 mysqli_report(MYSQLI_REPORT_ALL);
 $conn = connect();
 
-$sql = "SELECT UNAME, UPASSWORD, ACCOUNT_TYPE, USER_ID FROM USERS WHERE LOGIN_ID = ?";
+$sql = "SELECT UNAME, UPASSWORD, SALT, ACCOUNT_TYPE, USER_ID FROM USERS WHERE LOGIN_ID = ?";
 $username = $_POST["username"];
 $password = $_POST["password"];
 $arr = array();
@@ -15,10 +15,10 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
       mysqli_stmt_store_result($stmt);
           
       if (mysqli_stmt_num_rows($stmt) == 1) {
-        mysqli_stmt_bind_result($stmt, $name, $hashed_password, $acc, $uId);
-
+        mysqli_stmt_bind_result($stmt, $name, $hashed_password, $salt, $acc, $uId);
         if (mysqli_stmt_fetch($stmt)) {
-          if ($password == $hashed_password) {
+          $saltedPassword = md5($password.$salt);
+          if ($saltedPassword == $hashed_password) {
               session_start();
               $_SESSION["loggedin"] = true;
               $_SESSION["name"] = $name;

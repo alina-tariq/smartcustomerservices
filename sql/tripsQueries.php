@@ -12,9 +12,9 @@ $insertTrip = "INSERT INTO TRIPS
 
 try {
     $result = mysqli_query($connect, $insertTrip);
-    echo "trip 1 inserted\n";
+    //echo "trip 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTrip = "INSERT INTO TRIPS 
@@ -24,9 +24,9 @@ $insertTrip = "INSERT INTO TRIPS
 
 try {
     $result = mysqli_query($connect, $insertTrip);
-    echo "trip 2 inserted\n";
+    //echo "trip 2 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTrip = "INSERT INTO TRIPS 
@@ -36,9 +36,9 @@ $insertTrip = "INSERT INTO TRIPS
 
 try {
     $result = mysqli_query($connect, $insertTrip);
-    echo "trip 3 inserted\n";
+    //echo "trip 3 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTrip = "INSERT INTO TRIPS 
@@ -48,9 +48,9 @@ $insertTrip = "INSERT INTO TRIPS
 
 try {
     $result = mysqli_query($connect, $insertTrip);
-    echo "trip 4 inserted\n";
+    //echo "trip 4 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTrip = "INSERT INTO TRIPS 
@@ -60,9 +60,9 @@ $insertTrip = "INSERT INTO TRIPS
 
 try {
     $result = mysqli_query($connect, $insertTrip);
-    echo "trip 5 inserted\n";
+    //echo "trip 5 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 ?>

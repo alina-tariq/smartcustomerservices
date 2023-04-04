@@ -15,9 +15,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "banana inserted\n";
+    //echo "banana inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -28,9 +28,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "apple inserted\n";
+    //echo "apple inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -41,9 +41,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "orange inserted\n";
+    //echo "orange inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -54,9 +54,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "bagels inserted\n";
+    //echo "bagels inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -67,9 +67,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "beyond meat inserted\n";
+    //echo "beyond meat inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -80,9 +80,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "chicken inserted\n";
+    //echo "chicken inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -93,9 +93,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "chips inserted\n";
+    //echo "chips inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -106,9 +106,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "eggs inserted\n";
+    //echo "eggs inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -119,9 +119,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "milk inserted\n";
+    //echo "milk inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -132,9 +132,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "oreos inserted\n";
+    //echo "oreos inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -145,9 +145,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "spring mix inserted\n";
+    //echo "spring mix inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertItem = "INSERT INTO ITEMS 
@@ -158,9 +158,9 @@ $insertItem = "INSERT INTO ITEMS
 
 try {
     $result = mysqli_query($connect, $insertItem);
-    echo "tofu inserted\n";
+    //echo "tofu inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 // view images

@@ -2,7 +2,6 @@
 mysqli_report(MYSQLI_REPORT_ALL);
 $conn = connect();
 
-
 $uName = $_POST["uName"];
 $uLogin = $_POST["uLogin"];
 $phone = $_POST["phone"];
@@ -16,10 +15,17 @@ $uAcc = $_POST["uAcc"];
 $uEmail = $_POST["uEmail"];
 $arr = array();
 
+function generateRandomSalt(){
+    return base64_encode(random_bytes(12));
+}
+
+$salt = generateRandomSalt();
+$hashedPassword = md5($uPassword.$salt);
+
 $insertUser = "INSERT INTO USERS (UNAME, PHONE, EMAIL, UADDRESS, CITY, PROVINCE, 
-    POSTAL_CODE, LOGIN_ID, UPASSWORD, BALANCE, ACCOUNT_TYPE) VALUES ('$uName', '$phone', 
-    '$uEmail', '$uAddress', '$uCity', '$uProvince', '$uPost', '$uLogin', '$uPassword', 
-    $uBalance, $uAcc);";
+    POSTAL_CODE, LOGIN_ID, UPASSWORD, SALT, BALANCE, ACCOUNT_TYPE) VALUES ('$uName', '$phone', 
+    '$uEmail', '$uAddress', '$uCity', '$uProvince', '$uPost', '$uLogin', '$hashedPassword',
+    '$salt', $uBalance, $uAcc);";
 
 try {
     $result = mysqli_query($conn, $insertUser);

@@ -12,9 +12,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 1 inserted\n";
+    //echo "truck 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTruck = "INSERT INTO TRUCKS 
@@ -24,9 +24,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 1 inserted\n";
+    //echo "truck 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTruck = "INSERT INTO TRUCKS 
@@ -36,9 +36,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 1 inserted\n";
+    //echo "truck 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTruck = "INSERT INTO TRUCKS 
@@ -48,9 +48,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 1 inserted\n";
+    //echo "truck 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTruck = "INSERT INTO TRUCKS 
@@ -60,9 +60,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 1 inserted\n";
+    //echo "truck 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTruck = "INSERT INTO TRUCKS 
@@ -72,9 +72,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 1 inserted\n";
+    //echo "truck 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $insertTruck = "INSERT INTO TRUCKS 
@@ -84,9 +84,9 @@ $insertTruck = "INSERT INTO TRUCKS
 
 try {
     $result = mysqli_query($connect, $insertTruck);
-    echo "truck 7 inserted\n";
+    //echo "truck 7 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 ?>

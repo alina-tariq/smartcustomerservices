@@ -22,9 +22,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 1 inserted\n";
+    //echo "user 1 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -39,9 +39,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 2 inserted\n";
+    //echo "user 2 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -56,9 +56,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 3 inserted\n";
+    //echo "user 3 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -73,9 +73,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 4 inserted\n";
+    //echo "user 4 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -90,9 +90,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 5 inserted\n";
+    //echo "user 5 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -107,9 +107,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 6 inserted\n";
+    //echo "user 6 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -124,9 +124,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 7 inserted\n";
+    //echo "user 7 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -141,9 +141,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 8 inserted\n";
+    //echo "user 8 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -158,9 +158,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 9 inserted\n";
+    //echo "user 9 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 $salt = generateRandomSalt();
@@ -176,9 +176,9 @@ $insertUser = "INSERT INTO USERS
 
 try {
     $result = mysqli_query($connect, $insertUser);
-    echo "user 10 inserted\n";
+    //echo "user 10 inserted\n";
 } catch (Exception $ex) {
-    echo $ex->getMessage();
+    //echo $ex->getMessage();
 }
 
 ?>

@@ -17,7 +17,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS ITEMS
 ";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "items created <br>";
+    //echo "items created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS USERS 
@@ -39,7 +39,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS USERS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "users created <br>";
+    //echo "users created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS TRUCKS 
@@ -51,7 +51,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS TRUCKS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "trucks created <br>";
+    //echo "trucks created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS SHOPPING 
@@ -63,7 +63,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS SHOPPING
 );";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "shopping created <br>";
+    //echo "shopping created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS TRIPS 
@@ -79,7 +79,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS TRIPS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "trips created <br>";
+    //echo "trips created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS ORDERS 
@@ -99,7 +99,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS ORDERS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "orders created <br>";
+    //echo "orders created <br>";
 } catch (Exception $e) { echo $e->getMessage();}
 
 $createTable = "CREATE TABLE IF NOT EXISTS REVIEWS 
@@ -115,5 +115,5 @@ $createTable = "CREATE TABLE IF NOT EXISTS REVIEWS
 );";
 try {
     $result = mysqli_query($connect, $createTable);
-    echo "reviews created <br>";
+    //echo "reviews created <br>";
 } catch (Exception $e) { echo $e->getMessage();}

@@ -410,14 +410,14 @@
                 }
 
                 $scope.insertOrderReview = function(){
-                    var item_id = document.getElementById("orderId").value;
+                    var order_id = document.getElementById("orderId").value;
                     var ranking_number = document.getElementById("orderRankingNumber").value;
                     var review_text = document.getElementById("orderReviewTxt").value;
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/review.php",
                         data: {tablename: 'reviews',
-                            itemId: item_id,
+                            orderId: order_id,
                             rankingNumber: ranking_number,
                             orderReviewTxt: review_text
                         }, success: function(reviewCheck) {
@@ -829,7 +829,7 @@
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/update.php",
-                        contentTpye: false,
+                        contentType: false,
                         processData: false,
                         data: formData,
                         success: function(itemCheck) {

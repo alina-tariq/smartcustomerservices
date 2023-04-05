@@ -441,33 +441,33 @@
                             console.log(arr);
                             let container = document.getElementById("reviewList");
                             let table = document.createElement("table");
-                            table.style.border = "1px solid black";
+                            
                             let tr = table.insertRow();
                             let th = document.createElement("th");
-                            tr.style.border = "1px solid black";
+                            
                             th.innerText = "ITEM ID";
-                            th.style.border = "1px solid black";
+                            
                             tr.appendChild(th);
                             let th4 = document.createElement("th");
                             th4.innerText = "ORDER ID";
-                            th4.style.border = "1px solid black";
+                            
                             tr.appendChild(th4);
                             let th2 = document.createElement("th");
                             th2.innerText = "RATING NUMBER";
-                            th2.style.border = "1px solid black";
+                            
                             tr.appendChild(th2);
                             let th3 = document.createElement("th");
-                            th3.style.border = "1px solid black";
+                            
                             th3.innerText = "REVIEW";
                             tr.appendChild(th3);
                             arr.forEach((item) => {
                                 let tr = document.createElement("tr");
-                                tr.style.border = "1px solid black";
+                                
                                 let vals = Object.values(item);
                                 vals.forEach((elem) => {
                                     let td = document.createElement("td");
                                      td.innerText = elem;
-                                     td.style.border = "1px solid black";
+                                     
                                     tr.appendChild(td);
                                 });
 

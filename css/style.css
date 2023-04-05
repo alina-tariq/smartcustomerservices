@@ -249,7 +249,7 @@ input[type=textbox].reviewTxt:focus {
     border: 3px solid black;
 }
 
-input[type=text].orderID {
+input[type=text], input[type=password] {
     height: 30px;
     border-radius: 5px;
     border: 3px solid #ccc;
@@ -259,12 +259,13 @@ input[type=text].orderID {
     box-sizing: border-box;
 }
 
-input[type=text].orderID:focus {
+input[type=text]:focus, input[type=password]:focus {
     border: 3px solid black;
 }
 
 input[type=button], input[type=submit], button {
     border-radius: 10px;
+    padding: 4px;
     text-align: center;
     background-color: rgb(14, 141, 209);
     color: white;
@@ -287,4 +288,8 @@ th, td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.submit-right {
+    float: right;
 }

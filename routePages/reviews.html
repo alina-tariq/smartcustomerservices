@@ -18,7 +18,7 @@
                     <option value="5">5/5</option>
                 </select>
                 <br>
-                <input class="reviewTxt" type="textbox" placeholder="Enter a review here" id="reviewTxt" required>
+                <input class="reviewTxt" maxlength="200" type="textbox" placeholder="Enter a review here" id="reviewTxt" required>
                 <br><br>
                 <br>
                 <button ng-click="insertReview()">Submit</button>
@@ -36,7 +36,7 @@
         <span class="section_title">Enter Order Review: </span>
         <div>
             <form>
-                <input class="orderID" type="text" placeholder="Order ID" id="orderId" required>
+                <input class="orderID" pattern="[0-9]" type="text" placeholder="Order ID" id="orderId" required>
                 <select id="orderRankingNumber" required>
                    <option value="0">0/5</option>
                    <option value="1">1/5</option>
@@ -46,7 +46,7 @@
                    <option value="5">5/5</option>
                 </select>
                 <br>
-                <input class="reviewTxt" type="textbox" placeholder="Enter a review here" id="orderReviewTxt" required>
+                <input class="reviewTxt" maxlength="200" type="textbox" placeholder="Enter a review here" id="orderReviewTxt" required>
                 <br><br>
                 <br>
                 <button class="service1_button" ng-click="insertOrderReview()">Submit</button>

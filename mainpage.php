@@ -967,14 +967,16 @@
                             var accountType = type.value;
                         }
                     }
-
+                
                     const phoneCheck = new RegExp("[1-9][0-9]{2}[ -]?[0-9]{3}[ -]?[0-9]{4}");
+                    const provinceCheck = new RegExp(/^(N[BLSTU]|[AMN]B|[BQ]C|ON|PE|SK)$/);
                     const postalCodeCheck = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY][ -]?\d[ABCEGHJKLMNPRSTVXY]\d$/i);
                     const creditCheck = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
                     const expiryCheck = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
                     const cvcCheck = new RegExp("[0-9]{3}");
                     
                     var verifyPhone = phoneCheck.test(phone);
+                    var verifyProvince = provinceCheck.test(uProvince);
                     var verifyPostalCode = postalCodeCheck.test(uPost);
                     var verifyPass = uPassword == confirmPassword 
                     var verifyPassLength = uPassword.length >= 6;
@@ -985,6 +987,9 @@
                     if (!verifyPhone) {
                         document.getElementById("inc").innerHTML = "";
                         document.getElementById("inc").innerHTML = "Invalid phone number!";
+                    } else if (!verifyProvince) {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Invalid province (two letter abbreviation only)!";
                     } else if (!verifyPostalCode) {
                         document.getElementById("inc").innerHTML = "";
                         document.getElementById("inc").innerHTML = "Invalid postal code!";
@@ -999,12 +1004,12 @@
                         document.getElementById("inc").innerHTML = "Invalid payment information!";
                     } else {
                         phone = phone.replace(/-|\s/g,"");
-                        uPost = uPost.replace(/-|\s/g,"");
-
+                        uPost = uPost.replace(/-|\s/g,"");   
                         jQuery.ajax({
                             type: "POST",
-                            url: "functions/signup.php",
+                            url: "functions/insert.php",
                             data: {
+                                funcName: 'User',
                                 uName: uName,
                                 uLogin : uLogin,
                                 phone : phone,

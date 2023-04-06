@@ -1,59 +1,103 @@
-<div class="container">
-    <div class="row d_flex">
-        <form>
-            <h6>Sign Up Form</h6>
-            <label>Name:</label>
-            <input type="text" placeholder="Full Name" id="name" required>
-            <br>
-            <label>Email:</label>
-            <input type="text" placeholder="Email" id="email" required>
-            <br>
-            <label>Phone:</label>
-            <input type="text" placeholder="Phone Number" id="phone" required>
-            <br>
-            <label>Address:</label>
-            <input type="text" placeholder="Address" id="address" required>
-            <br>
-            <label>City:</label>
-            <input type="text" placeholder="City" id="city" required>
-            <br>
-            <label>Province:</label>
-            <input type="text" placeholder="Province" id="province" required>
-            <br>
-            <label>Postal Code:</label>
-            <input type="text" placeholder="Postal Code" id="postalCode" required>
-            <br>
-            <label>Username:</label>
-            <input type="text" placeholder="Username" id="username" required>
-            <br>
-            <label>Password (at least 6 characters):</label>
-            <input type="password" placeholder="Password" id="pass" required>
-            <br>
-            <label>Confirm Password:</label>
-            <input type="password" placeholder="Confirm Password" id="confirmPass" required>
-            <br>
-            <label>Account Type:</label>
-            <input type="radio" id="standard" name="account" value="1" required>Standard
-            <input type="radio" id="premium" name="account" value="2">Premium
-            <br>
-            <br>
-            <h6>Payment Information</h6>
-            <label>Credit Card:</label>
-            <input type="text" placeholder="Credit Card Number" id="cc" required>
-            <br>
-            <label>Expiry Date:</label>
-            <input type="text" placeholder="Expiry Date (MM/YY)" id="expiryDate" required>
-            <br>
-            <label>CVC:</label>
-            <input type="text" placeholder="CVC" id="cvc" required>
-            <br>
-            <br>
-            <button ng-click="signup()">Submit</button>
-        </form>
+<link rel="stylesheet" href="css/style.css">
+
+<section class="gradient-custom">
+    <div class="container py-5 h-auto">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4">
+  
+                <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+                <br>
+                
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="name">Full Name</label>
+                  <input type="text" placeholder="Full Name" id="name" class="form-control form-control-lg" required>
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="email">Email:</label>
+                    <input type="text" placeholder="Email" id="email" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="phone">Phone:</label>
+                    <input type="text" placeholder="Phone Number" id="phone" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">    
+                    <label class="form-label" for="address">Address:</label>
+                    <input type="text" placeholder="Address" id="address" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">    
+                    <label class="form-label" for="city">City:</label>
+                    <input type="text" placeholder="City" id="city" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">   
+                    <label class="form-label" for="province">Province:</label>
+                    <input type="text" placeholder="Province" id="province" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">   
+                    <label class="form-label" for="postalCode">Postal Code:</label>
+                    <input type="text" placeholder="Postal Code" id="postalCode" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">    
+                    <label class="form-label" for="username">Username:</label>
+                    <input type="text" placeholder="Username" id="username" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="pass">Password:</label>
+                    <input type="password" placeholder="Password" id="pass" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="confirmPass">Confirm Password:</label>
+                    <input type="password" placeholder="Confirm Password" id="confirmPass" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="account">Account Type:</label>
+                    <br>
+                    <div class="form-check form-check-lg form-check-inline">
+                        <input class="form-check-input" type="radio" id="standard" name="account" value="1" required>
+                        <label class="form-check-label" for="standard"> Standard</label>
+                      </div>
+                    <div class="form-check form-check-lg form-check-inline">
+                        <input class="form-check-input" type="radio" id="premium" name="account" value="2">
+                        <label class="form-check-label" for="premium"> Premium</label>
+                    </div>
+                </div>
+                <br>
+                <h5 class="text-white-100 mb-3">Payment Information</h5>
+
+                <div class="form-outline form-white mb-4">   
+                    <label class="form-label" for="cc">Credit Card:</label>
+                    <input type="text" placeholder="Credit Card Number" id="cc" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">   
+                    <label class="form-label" for="expiryDate">Expiry Date:</label>
+                    <input type="text" placeholder="Expiry Date (MM/YY)" id="expiryDate" class="form-control form-control-lg" required>
+                </div>
+                
+                <div class="form-outline form-white mb-4">    
+                    <label class="form-label" for="cvc">CVC:</label>
+                    <input type="text" placeholder="CVC" id="cvc" class="form-control form-control-lg" required>
+                </div>
+                <br>
+                <button class="btn btn-outline-light btn-lg px-5" ng-click="signup()">Sign Up</button>
+                <br><br>
+                <p id="inc"></p>
+             </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div class="row d_flex">
-        <br>
-        <p id="inc"></p>
-    </div>
-</div>
+  </section>

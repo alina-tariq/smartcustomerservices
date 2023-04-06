@@ -293,3 +293,18 @@ tr:nth-child(even) {
 .submit-right {
     float: right;
 }
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to top, #2b5876 0%, #4e4376 100%);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to top, #2b5876 0%, #4e4376 100%)
+}
+
+input[type=radio] {
+    transform:scale(1.75);
+}

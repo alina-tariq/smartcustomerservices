@@ -306,10 +306,10 @@ tr:nth-child(even) {
     background: #6a11cb;
     
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to top, #2b5876 0%, #4e4376 100%);
+    background: -webkit-radial-gradient(circle, #ee7a2c 0%, #3bb5c8 100%);
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to top, #2b5876 0%, #4e4376 100%)
+    background: radial-gradient(circle, #ee7a2c 0%, #3bb5c8 100%)
 }
 
 input[type=radio] {

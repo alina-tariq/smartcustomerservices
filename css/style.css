@@ -1,4 +1,11 @@
-ul {
+.navbar-scroll .navbar-brand,
+.navbar-scroll .nav-link,
+.navbar-scroll .nav-dro,
+.dropdown-menu, .dropdown-item {
+  color: #ffffff;
+}
+
+/* ul {
     border-radius: 5px;
     list-style-type: none;
     background-color:#A38550;
@@ -30,7 +37,7 @@ li a{
 li a:hover{
     color: black;
     background-color: yellow;
-}
+} */
 
 body {
     background-color: #ffffff;
@@ -170,14 +177,14 @@ img.icon {
     z-index: 1;
 }
 
-.dropButton {
+/* .dropButton {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: lightgray;
     padding: 0px 10px;
-}
+} */
 
-.dropdown {
+/* .dropdown {
     position: relative;
     top: -25px;
     display: none;
@@ -186,7 +193,7 @@ img.icon {
     padding: 10px 20px;
     text-decoration: none; 
     z-index: 2;
-}
+} */
 
 .topRight:hover .dropdown {
     display: block;
@@ -319,4 +326,3 @@ select {
     position:relative;
     border-radius: 5px;
 }
-

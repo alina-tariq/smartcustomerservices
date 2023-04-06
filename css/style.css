@@ -312,6 +312,17 @@ tr:nth-child(even) {
     background: radial-gradient(circle, #ee7a2c 0%, #3bb5c8 100%)
 }
 
+.gradient-custom2 {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-radial-gradient(ellipse, #ee7a2c 20%, #3bb5c8 100%);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: radial-gradient(ellipse 70% 100%, #ee7a2c 20%, #3bb5c8 100%)
+}
+
 input[type=radio] {
     transform:scale(1.75);
 }

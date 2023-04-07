@@ -1,47 +1,18 @@
 .navbar-scroll .navbar-brand,
 .navbar-scroll .nav-link,
 .navbar-scroll .nav-dro,
-.dropdown-menu, .dropdown-item {
-  color: #ffffff;
+.dropdown-item {
+    font-weight: bold;
+    font-size: large;
+    color: #515151;
 }
 
-/* ul {
-    border-radius: 5px;
-    list-style-type: none;
-    background-color:#A38550;
-    margin: 20px 10px;
-    padding: 0;
-    overflow: auto;
+.navbar, .dropdown-menu {
+    background-color: #3bb5c8;
 }
-
-li {
-    float: left;
-    border: 1px solid #806519;
-    border-radius: 2px;
-}
-
-li:last-child{
-    border-radius: 2px;
-    float: right;
-    background-color: lightgreen;
-}
-
-li a{
-   display: block;
-   color: black;
-   text-align: center;
-   padding: 15px 20px;
-   text-decoration: none; 
-}
-
-li a:hover{
-    color: black;
-    background-color: yellow;
-} */
 
 body {
-    background-color: #3bb5c8;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 @media (max-width: 979px) {
@@ -104,7 +75,7 @@ img.icon {
 
 .header {
     width: 100%;
-    background: #3bb5c8;
+    background: #e0e0e0;
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -137,13 +108,13 @@ img.icon {
 }
 
 .service1 {
-    background: #32a838;
+    background: #ffffff;
     padding-top: 100px;
     padding-bottom: 100px;
 }
 
 .service2 {
-    background: #3bb5c8;
+    background: #f3d7c4;
     padding-top: 100px;
     padding-bottom: 100px;
 }

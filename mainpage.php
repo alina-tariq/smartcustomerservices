@@ -38,38 +38,38 @@
 
     <body ng-app="myApp">
 
-        <nav class="navbar bg-dark navbar-expand-lg fixed-top navbar-scroll">
+        <nav class="navbar py-3 navbar-expand-lg fixed-top navbar-scroll">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <i class="lni lni-line-double"></i>
+                    ≡
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#/!">Home</a>
+                            <a class="nav-link" href="#/!">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!about">About</a>
+                            <a class="nav-link" href="#!about">ABOUT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!contact">Contact Us</a>
+                            <a class="nav-link" href="#!contact">CONTACT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!reviews">Reviews</a>
+                            <a class="nav-link" href="#!reviews">REVIEWS</a>
                         </li>
                         <li id="signIn" class="nav-item">
-                            <a class="nav-link" href="#!signIn">Sign In</a>
+                            <a class="nav-link" href="#!signIn">SIGN IN</a>
                         </li>
                         <li id="signUp" class="nav-item">
-                            <a class="nav-link" href="#!signUp">Sign Up</a>
+                            <a class="nav-link" href="#!signUp">SIGN UP</a>
                         </li>
                         <li id="signOut" style="display:none;" class="nav-item">
-                            <a class="nav-link" href="#!signOut">Sign Out</a>
+                            <a class="nav-link" href="#!signOut">SIGN OUT</a>
                         </li>
                         <li id="premium" style="display:none;" class="nav-item">
-                            <a class="nav-link" href="#!premium">Premium</a>
+                            <a class="nav-link" href="#!premium">PREMIUM</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end">
@@ -77,7 +77,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Database Maintain
                             </a>
-                            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#!insert">Insert</a>
                                 <a class="dropdown-item" href="#!delete">Delete</a>
                                 <a class="dropdown-item" href="#!select">Select</a>
@@ -87,7 +87,7 @@
                         </li>
                         <li class="nav-item me-3 me-lg-0">
                             <a class="nav-link" ondrop="drop(event)" ondragover="allowDrop(event)" href="#!cart">
-                                Cart
+                                CART
                             </a>
                         </li>
                     </ul>

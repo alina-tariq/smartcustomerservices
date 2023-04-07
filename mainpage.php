@@ -9,6 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <head>
     <title>Smart Customer Services</title>
     <meta charset="utf-8" />
@@ -170,77 +171,133 @@
                 $scope.initMap = function () {
                     var warehouseLoc = document.getElementById("warehouse").value;
                     var uLocation = document.getElementById("uLocation").value;
-                    var wPostalCode = "";
+                    var delDate = document.getElementById("deliveryDate").value;
+                    var delTime = document.getElementById("delTime").value;
 
-                    if (warehouseLoc == "350 Victoria Street, Toronto, ON") {
-                        var location = { lat: 43.657, lng: -79.378 };
-                        wPostalCode = "M5B0A1";
-                    } else if (warehouseLoc == "220 Yonge Street, Toronto, ON") {
-                        var location = { lat: 43.654, lng: -79.380 };
-                        wPostalCode = "M5B2H1";
-                    } else if (warehouseLoc == "290 Brenmer Blvd, Toronto, ON") {
-                        var location = { lat: 43.642, lng: -79.387 };
-                        wPostalCode = "M5V2T6";
-                    }
-                    var newMap = new google.maps.Map(document.getElementById("map"), { zoom: 13, center: location, mapTypeId: google.maps.MapTypeId.ROADMAP });
-                    var marker = new google.maps.Marker({ position: location, map: newMap });
-                    var infoWindow = new google.maps.InfoWindow({ content: "<h5>Warehouse Location</h5>" });
-                    marker.addListener("click", function () { infoWindow.open(newMap, marker); });
+                    if (uLocation == "" || delDate == "" || delTime == "") {
+                        document.getElementById("invoiceError").innerHTML = "Please fill out all delivery details!";
+                    } else if (new Date(delDate) <= new Date()) {
+                        document.getElementById("invoiceError").innerHTML = "Please select a valid delivery date.";
+                    } else if (delTime < "10:00" || delTime > "17:00") {
+                        document.getElementById("invoiceError").innerHTML = "Please enter a valid delivery time.";
+                    } else {
+                        var wPostalCode = "";
 
-                    if (uLocation) {
-                        var geocoder = new google.maps.Geocoder();
-                        geocoder.geocode({ 'address': uLocation }, function (results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                for (j = 0; j < results[0].address_components.length; j++) {
-                                    if (results[0].address_components[j].types[0] == 'postal_code') {
-                                        var postalCode = results[0].address_components[j].short_name;
-                                        postalCode = postalCode.replace(/\s/g, '');
-                                        document.getElementById("address").innerHTML = postalCode;
+                        if (warehouseLoc == "350 Victoria Street, Toronto, ON") {
+                            var location = { lat: 43.657, lng: -79.378 };
+                            wPostalCode = "M5B0A1";
+                        } else if (warehouseLoc == "220 Yonge Street, Toronto, ON") {
+                            var location = { lat: 43.654, lng: -79.380 };
+                            wPostalCode = "M5B2H1";
+                        } else if (warehouseLoc == "290 Brenmer Blvd, Toronto, ON") {
+                            var location = { lat: 43.642, lng: -79.387 };
+                            wPostalCode = "M5V2T6";
+                        }
+                        var newMap = new google.maps.Map(document.getElementById("map"), { zoom: 13, center: location, mapTypeId: google.maps.MapTypeId.ROADMAP });
+                        var marker = new google.maps.Marker({ position: location, map: newMap });
+                        var infoWindow = new google.maps.InfoWindow({ content: "<h5>Warehouse Location</h5>" });
+                        marker.addListener("click", function () { infoWindow.open(newMap, marker); });
 
+                        if (uLocation) {
+                            var geocoder = new google.maps.Geocoder();
+                            geocoder.geocode({ 'address': uLocation }, function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    for (j = 0; j < results[0].address_components.length; j++) {
+                                        if (results[0].address_components[j].types[0] == 'postal_code') {
+                                            var postalCode = results[0].address_components[j].short_name;
+                                            postalCode = postalCode.replace(/\s/g, '');
+                                            document.getElementById("address").innerHTML = postalCode;
+
+                                        }
                                     }
+                                    var lati = results[0].geometry.location.lat();
+                                    var long = results[0].geometry.location.lng();
+                                    var directionsDisplay = new google.maps.DirectionsRenderer();
+                                    var directionsService = new google.maps.DirectionsService();
+                                    var location2 = { lat: lati, lng: long };
+                                    var marker2 = new google.maps.Marker({ position: location2, map: newMap });
+                                    var infoWindow = new google.maps.InfoWindow({ content: "<h5>Your Location</h5>" });
+                                    marker.addListener("click", function () { infoWindow.open(newMap, marker2); });
+
+                                    var R = 6371;
+                                    var x1 = location2.lat - location.lat;
+                                    var dLat = x1.toRad();
+                                    var x2 = location2.lng - location.lng;
+                                    var dLng = x2.toRad();
+                                    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(location.lat.toRad()) * Math.cos(location2.lat.toRad()) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+                                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                                    var d = R * c;
+                                    d = Math.round(d);
+
+                                    document.getElementById("distance").innerHTML = d;
+
+                                    directionsService.route({
+                                        origin: location,
+                                        destination: location2,
+                                        provideRouteAlternatives: false,
+                                        travelMode: 'DRIVING'
+                                    }, function (result, status) {
+                                        if (status == google.maps.DirectionsStatus.OK) {
+                                            directionsDisplay.setDirections(result);
+                                            directionsDisplay.setMap(newMap);
+                                        }
+                                    });
                                 }
-                                var lati = results[0].geometry.location.lat();
-                                var long = results[0].geometry.location.lng();
-                                var directionsDisplay = new google.maps.DirectionsRenderer();
-                                var directionsService = new google.maps.DirectionsService();
-                                var location2 = { lat: lati, lng: long };
-                                var marker2 = new google.maps.Marker({ position: location2, map: newMap });
-                                var infoWindow = new google.maps.InfoWindow({ content: "<h5>Your Location</h5>" });
-                                marker.addListener("click", function () { infoWindow.open(newMap, marker2); });
+                            });
+                        }
 
-                                var R = 6371;
-                                var x1 = location2.lat - location.lat;
-                                var dLat = x1.toRad();
-                                var x2 = location2.lng - location.lng;
-                                var dLng = x2.toRad();
-                                var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(location.lat.toRad()) * Math.cos(location2.lat.toRad()) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
-                                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                                var d = R * c;
-                                d = Math.round(d);
+                        document.getElementById("branch").innerHTML = wPostalCode;
+                        document.getElementById("dayDelivered").innerHTML = delDate;
+                        document.getElementById("deliveryTime").innerHTML = delTime;
 
-                                document.getElementById("distance").innerHTML = d;
+                        let x = document.cookie.split(';');
+                        let arr = [];
+                        let keys = {};
+                        var count = 0;
+                        for (var i = 0; i < x.length; i++) {
+                            let y = x[i].split('=')[1];
+                            if (y.length < 5) {
+                                arr.push(y);
+                            }
+                        }
+                        document.cookie.split(';').forEach(function (e) {
 
-                                directionsService.route({
-                                    origin: location,
-                                    destination: location2,
-                                    provideRouteAlternatives: false,
-                                    travelMode: 'DRIVING'
-                                }, function (result, status) {
-                                    if (status == google.maps.DirectionsStatus.OK) {
-                                        directionsDisplay.setDirections(result);
-                                        directionsDisplay.setMap(newMap);
-                                    }
-                                });
+                            let [key, value] = e.split('=');
+                            if (value.length < 5) {
+                                keys[count] = "itemId" + key.replace(/\D/g, '');
+                                count = +count + 1;
                             }
                         });
-                    }
 
-                    document.getElementById("branch").innerHTML = wPostalCode;
-                    document.getElementById("dayDelivered").innerHTML = document.getElementById("deliveryDate").value;
-                    document.getElementById("deliveryTime").innerHTML = document.getElementById("delTime").value;
-                    document.getElementById("invoice").style.display = "none";
-                    document.getElementById("input").style.display = "none";
-                    document.getElementById("conComplete").style.display = "block";
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "functions/handleItems.php",
+                            dataType: "json",
+                            data: {
+                                tablename: 'items',
+                                values: arr
+                            }, success: function (tableData) {
+
+                                var arr = JSON.parse(JSON.stringify(tableData));
+                                var total = 0;
+
+                                arr.forEach((item) => {
+                                    let vals = Object.values(item);
+                                    total = +total + +vals[2];
+
+                                });
+
+                                total = +total + 5.49;
+                                total = total.toFixed(2);
+
+                                document.getElementById("invoiceTotal").innerHTML = total;
+                            }
+                        });
+
+                        document.getElementById("invoice").style.display = "none";
+                        document.getElementById("input").style.display = "none";
+                        document.getElementById("conComplete").style.display = "block";
+                    }
 
                 }
 
@@ -262,6 +319,7 @@
                             }
                         }
                     });
+
                     let x = document.cookie.split(';');
                     let arr = [];
                     let keys = {};
@@ -288,42 +346,52 @@
                         data: {
                             tablename: 'items',
                             values: arr
-                        }, success: function (phpAsJson) {
+                        }, success: function (tableData) {
+                            console.log(tableData);
+                            var arr = JSON.parse(JSON.stringify(tableData));
+                            var tBody = document.getElementById("cartTable").getElementsByTagName("tbody")[0];
+
                             var count = 0;
+                            var total = 0;
+
                             var container = document.getElementById("invoice");
                             var container2 = document.getElementById("outInv");
-                            var arr = JSON.parse(JSON.stringify(phpAsJson));
-                            var total = 0;
-                            console.log(arr);
+
                             arr.forEach((item) => {
+                                var newRow = tBody.insertRow();
 
-                                let para = document.createElement("p");
                                 let vals = Object.values(item);
-                                para.innerText = "Product Id: " + vals[0] + " Product: " + vals[1] + " Price: " + vals[2];
-                                total = +total + +vals[2];
 
-                                container.appendChild(para);
+                                for (var i = 0; i < vals.length + 1; i++) {
+                                    var rowCell = newRow.insertCell(i);
+                                    if (i == 3) {
+                                        var cellValue = document.createTextNode(1);
+                                    } else if (i == 2) {
+                                        var price = (Math.round(parseFloat(vals[i]) * 100) / 100).toFixed(2);
+                                        var cellValue = document.createTextNode('$'.concat(price));
+                                    } else {
+                                        var cellValue = document.createTextNode(vals[i]);
+                                    }
+                                    rowCell.appendChild(cellValue);
+                                }
 
-                                let para2 = document.createElement("p");
-                                para2.innerText = "Product Id: " + vals[0] + " Product: " + vals[1] + " Price: " + vals[2];
-                                container2.appendChild(para2);
+                                total = +total + +vals[2]
+
                                 let check = document.createElement("input");
                                 check.type = "checkbox";
                                 check.name = "delete";
                                 check.id = keys[count];
                                 count = +count + 1;
-                                container.appendChild(check);
+
+                                var rowCell = newRow.insertCell(4)
+                                rowCell.appendChild(check);
 
                             });
-                            let para = document.createElement("p");
+
+                            document.getElementById("subtotal").innerHTML = "Subtotal: $" + total.toFixed(2);
                             total = +total + 5.49;
                             total = total.toFixed(2);
-                            para.innerText = "Total: " + total;
-                            container.appendChild(para);
-                            let para2 = document.createElement("p");
-                            para2.innerText = "Total: " + total;
-                            para2.id = "total";
-                            container2.appendChild(para2);
+                            document.getElementById("total").innerHTML = "Order Total: $" + total;
                         }
                     });
 
@@ -346,55 +414,71 @@
                     var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
                     var dateRe = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
                     var cvcRe = new RegExp("[0-9]{3}");
-                    var creditNum = document.getElementById("cNum").value;
-                    var expDate = document.getElementById("eDate").value
-                    var cvc = document.getElementById("cvc_code").value;
-                    var warehouseLoc = document.getElementById("warehouse").value;
-                    var warehousePostal = document.getElementById("branch").innerHTML;
-                    var uLocation = document.getElementById("address").innerHTML;
-                    var date = document.getElementById("dayDelivered").innerHTML;
-                    var distance = document.getElementById("distance").innerHTML;
-                    if (warehouseLoc == "350 Victoria Street, Toronto, ON") {
-                        var store_code = 859;
-                    } else if (warehouseLoc == "220 Yonge Street, Toronto, ON") {
-                        var store_code = 2909;
-                    } else if (warehouseLoc == "290 Brenmer Blvd, Toronto, ON") {
-                        var store_code = 1002;
-                    }
-                    var totalPrice = document.getElementById("total").innerHTML;
-                    totalPrice = totalPrice.match(/[0-9]*\.[0-9]*/, "");
-                    totalPrice = parseFloat(totalPrice);
-                    totalPrice = totalPrice + 5.49;
-                    console.log("Here");
-                    console.log(creditRe.test(creditNum));
-                    console.log(dateRe.test(expDate));
-                    console.log(cvcRe.test(cvc));
 
-                    if (creditRe.test(creditNum) && dateRe.test(expDate) && cvcRe.test(cvc)) {
-                        console.log("Passed Test");
-                        jQuery.ajax({
-                            type: "POST",
-                            url: "functions/newOrder.php",
-                            data: {
-                                distance: distance,
-                                store_code: store_code,
-                                total_price: totalPrice,
-                                source_code: warehousePostal,
-                                destination_code: uLocation,
-                                trip_price: 5.49,
-                                date_issued: date,
-                                success: function () {
-                                    var cookies = document.cookie.split(';');
-                                    for (var i = 0; i < cookies.length; i++) {
-                                        var cookie = cookies[i];
-                                        var eqPos = cookie.indexOf("=");
-                                        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                                        document.cookie = name + "=; Path=/CPS630Project; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=localhost;";
+                    if (document.getElementById("cc").value == null || document.getElementById("expiryDate").value == null || document.getElementById("cvc").value == null) {
+                        document.getElementById("invoicePaymentError").innerHTML = "Please fill out payment information.";
+                    } else {
+                        var creditNum = document.getElementById("cc").value;
+                        var expDate = document.getElementById("expiryDate").value
+                        var cvc = document.getElementById("cvc").value;
+                        console.log(creditNum);
+                        console.log(expDate);
+                        console.log(cvc);
+                        var warehouseLoc = document.getElementById("warehouse").value;
+                        var warehousePostal = document.getElementById("branch").innerHTML;
+                        var uLocation = document.getElementById("address").innerHTML;
+                        var date = document.getElementById("dayDelivered").innerHTML;
+                        var distance = document.getElementById("distance").innerHTML;
+                        if (warehouseLoc == "350 Victoria Street, Toronto, ON") {
+                            var store_code = 859;
+                        } else if (warehouseLoc == "220 Yonge Street, Toronto, ON") {
+                            var store_code = 2909;
+                        } else if (warehouseLoc == "290 Brenmer Blvd, Toronto, ON") {
+                            var store_code = 1002;
+                        }
+                        var totalPrice = document.getElementById("total").innerHTML;
+                        totalPrice = totalPrice.match(/[0-9]*\.[0-9]*/, "");
+                        totalPrice = parseFloat(totalPrice);
+                        totalPrice = totalPrice + 5.49;
+                        console.log("Here");
+                        console.log(creditRe.test(creditNum));
+                        console.log(dateRe.test(expDate));
+                        console.log(cvcRe.test(cvc));
+
+                        if (creditRe.test(creditNum) && dateRe.test(expDate) && cvcRe.test(cvc)) {
+                            console.log("Passed Test");
+                            console.log(distance);
+                            console.log(store_code);
+                            console.log(totalPrice);
+                            console.log(warehousePostal);
+                            console.log(uLocation);
+                            console.log(date);
+                            jQuery.ajax({
+                                type: "POST",
+                                url: "functions/newOrder.php",
+                                data: {
+                                    distance: distance,
+                                    store_code: store_code,
+                                    total_price: totalPrice,
+                                    source_code: warehousePostal,
+                                    destination_code: uLocation,
+                                    trip_price: 5.49,
+                                    date_issued: date,
+                                    success: function () {
+                                        var cookies = document.cookie.split(';');
+                                        for (var i = 0; i < cookies.length; i++) {
+                                            var cookie = cookies[i];
+                                            var eqPos = cookie.indexOf("=");
+                                            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                                            document.cookie = name + "=; Path=/CPS630Project; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=localhost;";
+                                        }
+                                        $scope.$applyAsync(() => { $location.path('/confirm'); });
                                     }
-                                    $scope.$applyAsync(() => { $location.path('/confirm'); });
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            document.getElementById("invoicePaymentError").innerHTML = "Invalid payment information.";
+                        }
                     }
 
                 }
@@ -424,48 +508,59 @@
                     var item_id = document.getElementById("itemName").value;
                     var ranking_number = document.getElementById("rankingNumber").value;
                     var review_text = document.getElementById("reviewTxt").value;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "functions/review.php",
-                        data: {
-                            tablename: 'reviews',
-                            itemId: item_id,
-                            rankingNumber: ranking_number,
-                            reviewTxt: review_text
-                        }, success: function (reviewCheck) {
-                            var arr = JSON.parse(JSON.stringify(reviewCheck));
-                            if (arr[1] == 1) {
-                                document.getElementById("reviewMsg").innerHTML = "Submitted!";
-                            } else if (arr[1] == 0) {
-                                document.getElementById("reviewMsg").innerHTML = "Error in submitting review.";
+
+                    if (review_text == "") {
+                        document.getElementById("itemReviewError").innerHTML = "Please enter a review.";
+                    } else {
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "functions/review.php",
+                            data: {
+                                tablename: 'reviews',
+                                itemId: item_id,
+                                rankingNumber: ranking_number,
+                                reviewTxt: review_text
+                            }, success: function (reviewCheck) {
+                                var arr = JSON.parse(JSON.stringify(reviewCheck));
+                                if (arr[1] == 1) {
+                                    document.getElementById("reviewMsg").innerHTML = "Submitted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("reviewMsg").innerHTML = "Error in submitting review.";
+                                }
+                                $route.reload();
                             }
-                            $route.reload();
-                        }
-                    });
+                        });
+                    }
                 }
 
                 $scope.insertOrderReview = function () {
                     var order_id = document.getElementById("orderId").value;
                     var ranking_number = document.getElementById("orderRankingNumber").value;
                     var review_text = document.getElementById("orderReviewTxt").value;
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "functions/review.php",
-                        data: {
-                            tablename: 'reviews',
-                            orderId: order_id,
-                            rankingNumber: ranking_number,
-                            orderReviewTxt: review_text
-                        }, success: function (reviewCheck) {
-                            var arr = JSON.parse(JSON.stringify(reviewCheck));
-                            if (arr[1] == 1) {
-                                document.getElementById("reviewMsg").innerHTML = "Submitted!";
-                            } else if (arr[1] == 0) {
-                                document.getElementById("reviewMsg").innerHTML = "Error in submitting review.";
+
+                    if (review_text == "") {
+                        document.getElementById("orderReviewError").innerHTML = "Please enter a review.";
+                    } else {
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "functions/review.php",
+                            data: {
+                                tablename: 'reviews',
+                                orderId: order_id,
+                                rankingNumber: ranking_number,
+                                orderReviewTxt: review_text
+                            }, success: function (reviewCheck) {
+                                var arr = JSON.parse(JSON.stringify(reviewCheck));
+                                if (arr[1] == 1) {
+                                    document.getElementById("reviewMsg").innerHTML = "Submitted!";
+                                } else if (arr[1] == 0) {
+                                    document.getElementById("reviewMsg").innerHTML = "Error in submitting review.";
+                                }
+                                $route.reload();
                             }
-                            $route.reload();
-                        }
-                    });
+                        });
+                    }
+
                 }
 
                 $scope.orderReviewTable = function () {
@@ -492,7 +587,7 @@
                                         } else {
                                             var cellValue = document.createTextNode(vals[i]);
                                         }
-                                
+
                                         rowCell.appendChild(cellValue);
                                     }
                                 }
@@ -525,7 +620,7 @@
                                         } else {
                                             var cellValue = document.createTextNode(vals[i]);
                                         }
-                                
+
                                         rowCell.appendChild(cellValue);
                                     }
                                 }
@@ -1055,7 +1150,10 @@
                     var verifyExp = expiryCheck.test(expiryDate);
                     var verifyCvc = cvcCheck.test(cvc);
 
-                    if (!verifyPhone) {
+                    if (uName == "" || uEmail == "" || uAddress == "" || uCity == "" || uLogin == "") {
+                        document.getElementById("inc").innerHTML = "";
+                        document.getElementById("inc").innerHTML = "Please fill out all details!";
+                    } else if (!verifyPhone) {
                         document.getElementById("inc").innerHTML = "";
                         document.getElementById("inc").innerHTML = "Invalid phone number!";
                     } else if (!verifyProvince) {
@@ -1150,8 +1248,8 @@
                             });
                             container.appendChild(table);
                         }
-            });
-            }
+                    });
+                }
 
                 $scope.selOrders = function () {
                     var array = [];

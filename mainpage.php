@@ -240,7 +240,7 @@
                     document.getElementById("deliveryTime").innerHTML = document.getElementById("delTime").value;
                     document.getElementById("invoice").style.display = "none";
                     document.getElementById("input").style.display = "none";
-                    document.getElementById("printInvoice").style.display = "block";
+                    document.getElementById("conComplete").style.display = "block";
 
                 }
 

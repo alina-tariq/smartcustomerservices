@@ -1,53 +1,60 @@
 <div class="container">
-       <div class="row d_flex">
-        <p id="warning" style="display:none;">Please Login Before Placing an Order</p>
-             <div class="col-sm-8" ng-init="readCookies()" id="invoice">
-                <p>Use the Checkboxes to Remove Items</p>
-                <button ng-click="deleteCookie()">Remove</button>
-            </div>    
+    <div class="row d_flex">
+     <p id="warning" style="display:none;">Please Login Before Placing an Order</p>
+          <div class="col-sm-8" ng-init="readCookies()" id="invoice">
+             <p>Use the Checkboxes to Remove Items</p>
+             <button ng-click="deleteCookie()">Remove</button>
+         </div>    
 
-            <div class="col-sm-4" id="input">    
-                <form>
-                    <label for="uLocation">Delivery Address: </label>
-                    <input type="text" id="uLocation" required><br>
-                    <label for="warehouse">Warehouse: </label>
-                    <select id="warehouse" required>
-                        <option value="350 Victoria Street, Toronto, ON" select="selected">350 Victoria Street, Toronto, ON</option>
-                        <option value="220 Yonge Street, Toronto, ON">220 Yonge Street, Toronto, ON</option>
-                        <option value="290 Brenmer Blvd, Toronto, ON">290 Brenmer Blvd, Toronto, ON</option>
-                    </select>
-                    <label for="deliveryDate">Choose a Delivery Date</label>
-                    <input type="date" placeholder="Delivery Date" id="deliveryDate" required>
-                    <label for="delTime">Choose a Delivery Time (10am to 5pm)</label>
-                    <input type="time" id="delTime" name="deltime" min="10:00" max="17:00" required>
-                    
-                    <button ng-click="initMap()">Generate Invoice</button>
-                </form>
-        </div>
-    </div>
-    <div class="row d_flex" style="display:none" id="printInvoice">
-        <div class="col-sm-8" id="outInv">
-            <h1>Invoice</h1>
-            Destination Postal Code: <p id="address"></p>
-            Warehouse Postal Code: <p id="branch"></p>
-            Distance: <p id="distance"></p>
-            Delivery Date: <p id="dayDelivered"></p>
-            Delivery Time: <p id="deliveryTime"></p>
-            
-        </div>
-        
-        <div class="col-sm-4">
-            <div id="map"></div>
-            <form>
-                <br>
-                <h6>Enter payment information below:</h6>
-                <input type="text" placeholder="Credit Card Number" id="cNum" required>
-                <input type="text" placeholder="Expiry Date (MM/YY)" id="eDate" required>
-                <input type="text" placeholder="CVC" id="cvc_code" required>
-                <br><br>
-                <input type="submit" ng-click="confirmOrder()" value="Submit"></input>
-            </form>
-            <p id="confirmLogin"></p>
-        </div>
-    </div> 
+         <div class="col-sm-4" id="input">    
+             <form>
+                 <label for="uLocation">Delivery Address: </label>
+                 <input type="text" id="uLocation" required><br>
+                 <label for="warehouse">Warehouse: </label>
+                 <select id="warehouse" required>
+                     <option value="350 Victoria Street, Toronto, ON" select="selected">350 Victoria Street, Toronto, ON</option>
+                     <option value="220 Yonge Street, Toronto, ON">220 Yonge Street, Toronto, ON</option>
+                     <option value="290 Brenmer Blvd, Toronto, ON">290 Brenmer Blvd, Toronto, ON</option>
+                 </select>
+                 <label for="deliveryDate">Choose a Delivery Date</label>
+                 <input type="date" placeholder="Delivery Date" id="deliveryDate" required>
+                 <label for="delTime">Choose a Delivery Time (10am to 5pm)</label>
+                 <input type="time" id="delTime" name="deltime" min="10:00" max="17:00" required>
+                 
+                 <button ng-click="initMap()">Generate Invoice</button>
+             </form>
+     </div>
+ </div>
+</div>
+
+<div class="container" style="display:none" id="conComplete">
+ <div class="row d-flex justify-content-center align-items-center" id="printInvoice">
+     <div class="col-sm-8">
+         <div id="outInv">
+         <h1>Invoice</h1>
+         Destination Postal Code: <p id="address"></p>
+         Warehouse Postal Code: <p id="branch"></p>
+         Distance: <p id="distance"></p>
+         Delivery Date: <p id="dayDelivered"></p>
+         Delivery Time: <p id="deliveryTime"></p>
+         </div>
+         <div>
+             <form>
+                 <br>
+                 <h6>Enter payment information below:</h6>
+                 <input type="text" placeholder="Credit Card Number" id="cNum" required>
+                 <input type="text" placeholder="Expiry Date (MM/YY)" id="eDate" required>
+                 <input type="text" placeholder="CVC" id="cvc_code" required>
+                 <br><br>
+                 <input type="submit" ng-click="confirmOrder()" value="Submit"></input>
+             </form>
+         </div>
+     </div>
+
+     
+     <div class="col-sm-4">
+         <div id="map"></div>
+         <p id="confirmLogin"></p>
+     </div>
+ </div> 
 </div>

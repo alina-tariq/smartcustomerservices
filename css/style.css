@@ -41,6 +41,13 @@ li a:hover{
 
 body {
     background-color: #3bb5c8;
+    padding-top: 20px;
+}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0px;
+    }
 }
 
 h1.tClass {

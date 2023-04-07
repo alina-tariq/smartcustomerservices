@@ -25,7 +25,7 @@
                 <div class="full">
                     <div class="center-desk">
                         <div>
-                            <img src="img/logo.png" class="logo standard" />
+                            <img src="img/logo.png" class="logo" />
                         </div>
                     </div>
                 </div>
@@ -1083,7 +1083,7 @@
                 }
             }]);
 
-            app.controller("selCtrl", function ($scope) {
+            app.controller("selCtrl", ['$scope', '$route', function ($scope, $route) {
                 $scope.selUser = function () {
                     var array = [];
                     var checkboxes = document.querySelectorAll('input[name="user"]:checked');
@@ -1099,6 +1099,7 @@
                             values: array
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
@@ -1126,8 +1127,8 @@
                             });
                             container.appendChild(table);
                         }
-                    });
-                }
+            });
+            }
 
                 $scope.selOrders = function () {
                     var array = [];
@@ -1135,6 +1136,7 @@
                     for (var i = 0; i < checkboxes.length; i++) {
                         array.push(checkboxes[i].value);
                     }
+                    console.log(array);
                     jQuery.ajax({
                         type: "POST",
                         url: "functions/select.php",
@@ -1144,6 +1146,7 @@
                             values: array
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
@@ -1189,6 +1192,7 @@
                             values: array
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
@@ -1234,6 +1238,7 @@
                             values: array
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
@@ -1279,6 +1284,7 @@
                             values: array
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
@@ -1324,6 +1330,7 @@
                             values: array
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
@@ -1354,7 +1361,7 @@
                     });
                 }
 
-            });
+            }]);
             app.controller("homeCtrl", function ($scope) {
 
                 $scope.createListings = function () {
@@ -1376,14 +1383,14 @@
                                 console.log(".".concat(vals[3]));
                                 let img = document.createElement("img");
                                 img.src = ".".concat(vals[3]);
-                                img.className = "standard";
+                                img.className = "item";
                                 img.draggable = "true";
                                 img.addEventListener('dragstart', function (ev) { ev.dataTransfer.setData("id", ev.currentTarget.id) });
                                 img.id = vals[0];
                                 itemFig.appendChild(img);
                                 let figcaption = document.createElement("figcaption");
                                 figcaption.className = "figText";
-                                figcaption.innerText = "Id: " + vals[0] + " Product: " + vals[1] + " Price: " + vals[2];
+                                figcaption.innerText = vals[1] + " $" + vals[2];
                                 itemFig.appendChild(figcaption);
                                 container.appendChild(itemFig);
                             });

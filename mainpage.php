@@ -468,50 +468,70 @@
                     });
                 }
 
-                $scope.drawReviewTable = function () {
+                $scope.orderReviewTable = function () {
                     jQuery.ajax({
                         type: "POST",
-                        url: "functions/reviewTable.php",
-                        success: function (jsonAsPhp) {
-                            var arr = JSON.parse(jsonAsPhp);
-                            console.log(arr);
-                            let container = document.getElementById("reviewList");
-                            let table = document.createElement("table");
-
-                            let tr = table.insertRow();
-                            let th = document.createElement("th");
-
-                            th.innerText = "ITEM ID";
-
-                            tr.appendChild(th);
-                            let th4 = document.createElement("th");
-                            th4.innerText = "ORDER ID";
-
-                            tr.appendChild(th4);
-                            let th2 = document.createElement("th");
-                            th2.innerText = "RATING NUMBER";
-
-                            tr.appendChild(th2);
-                            let th3 = document.createElement("th");
-
-                            th3.innerText = "REVIEW";
-                            tr.appendChild(th3);
+                        url: "functions/orderReviewTable.php",
+                        success: function (tableData) {
+                            var arr = JSON.parse(tableData);
+                            var tBody = document.getElementById("orderTable").getElementsByTagName("tbody")[0];
                             arr.forEach((item) => {
-                                let tr = document.createElement("tr");
+                                var newRow = tBody.insertRow();
 
                                 let vals = Object.values(item);
-                                vals.forEach((elem) => {
-                                    let td = document.createElement("td");
-                                    td.innerText = elem;
 
-                                    tr.appendChild(td);
-                                });
-
-                                table.appendChild(tr);
+                                for (var i = 0; i < vals.length; i++) {
+                                    if (vals[0] != null) {
+                                        var rowCell = newRow.insertCell(i);
+                                        if (i == 1) {
+                                            let rating = "";
+                                            for (var j = 0; j < vals[i]; j++) {
+                                                rating = rating.concat("\u{2605} ");
+                                            }
+                                            var cellValue = document.createTextNode(rating);
+                                        } else {
+                                            var cellValue = document.createTextNode(vals[i]);
+                                        }
+                                
+                                        rowCell.appendChild(cellValue);
+                                    }
+                                }
                             });
-                            container.appendChild(table);
                         }
-                    });
+                    })
+                }
+
+                $scope.itemReviewTable = function () {
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "functions/itemReviewTable.php",
+                        success: function (tableData) {
+                            var arr = JSON.parse(tableData);
+                            var tBody = document.getElementById("itemTable").getElementsByTagName("tbody")[0];
+                            arr.forEach((item) => {
+                                var newRow = tBody.insertRow();
+
+                                let vals = Object.values(item);
+
+                                for (var i = 0; i < vals.length; i++) {
+                                    if (vals[0] != null) {
+                                        var rowCell = newRow.insertCell(i);
+                                        if (i == 1) {
+                                            let rating = "";
+                                            for (var j = 0; j < vals[i]; j++) {
+                                                rating = rating.concat("\u{2605} ");
+                                            }
+                                            var cellValue = document.createTextNode(rating);
+                                        } else {
+                                            var cellValue = document.createTextNode(vals[i]);
+                                        }
+                                
+                                        rowCell.appendChild(cellValue);
+                                    }
+                                }
+                            });
+                        }
+                    })
                 }
             }]);
             app.controller("inCtrl", function ($scope) {

@@ -11,8 +11,8 @@
                                     <br>
                                     <div class="form-group">
                                         <label for="orderId">Order ID</label>
-                                        <input class="form-control form-control-md" pattern="[0-9]" type="textbox" placeholder="Order ID" id="orderId"
-                                            required>
+                                        <input class="form-control form-control-md" pattern="[0-9]" type="textbox"
+                                            placeholder="Order ID" id="orderId" required>
                                         <br>
                                         <label for="orderRankingNumber">Rating</label>
                                         <select class="form-control" id="orderRankingNumber" required>
@@ -25,12 +25,13 @@
                                         </select>
                                         <br>
                                         <label for="orderReviewTxt">Review</label>
-                                        <input class="form-control form-control-md" maxlength="200" type="textbox" id="orderReviewTxt"
-                                            placeholder="Enter a review here" required></input>
+                                        <input class="form-control form-control-md" maxlength="200" type="textbox"
+                                            id="orderReviewTxt" placeholder="Enter a review here" required></input>
                                     </div>
 
                                     <br>
-                                    <button class="btn btn-outline-light btn-lg px-5" ng-click="insertOrderReview()">Submit
+                                    <button class="btn btn-outline-light btn-lg px-5"
+                                        ng-click="insertOrderReview()">Submit
                                         Review</button>
                                 </div>
                             </div>
@@ -48,7 +49,8 @@
                                     <br>
                                     <div class="form-group">
                                         <label for="itemName">Select Item</label>
-                                        <select class="form-control" ng-init="setOptions()" id="itemName" required></select>
+                                        <select class="form-control" ng-init="setOptions()" id="itemName"
+                                            required></select>
                                         <br>
                                         <label for="rankingNumber">Rating</label>
                                         <select class="form-control" id="rankingNumber" required>
@@ -61,8 +63,8 @@
                                         </select>
                                         <br>
                                         <label for="reviewTxt">Review</label>
-                                        <input class="form-control form-control-md" maxlength="200" type="textbox" placeholder="Enter a review here"
-                                        id="reviewTxt" required></input>
+                                        <input class="form-control form-control-md" maxlength="200" type="textbox"
+                                            placeholder="Enter a review here" id="reviewTxt" required></input>
                                     </div>
                                     <br>
                                     <button class="btn btn-outline-light btn-lg px-5" ng-click="insertReview()">Submit
@@ -77,12 +79,60 @@
     </div>
 </div>
 <div class="service1">
-    <div class="container">
-        <div class="row d_flex">
-            <div id="reviewList" ng-init="drawReviewTable()">
-                <span class="section_title"> Reviews </span>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-5 m-4">
+                <div class="row d-flex">
+                    <div class="grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Order Reviews</h3>
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="table table-fixed" id="orderTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-2">Order ID</th>
+                                                <th class="col-3">Rating</th>
+                                                <th>Review</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-init="orderReviewTable()">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 m-4">
+                <div class="row d-flex">
+                    <div class="grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Item Reviews</h3>
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="table table-fixed" id="itemTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-3">Item Name</th>
+                                                <th class="col-3">Rating</th>
+                                                <th>Review</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-init="itemReviewTable()">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="reviewMsg"></div>
     </div>
+</div>
+<div id="reviewMsg"></div>
 </div>

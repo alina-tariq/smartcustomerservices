@@ -141,7 +141,7 @@ $insertItem = "INSERT INTO ITEMS
                 (ITEM_ID, ITEM_NAME, PRICE, DISCOUNT_PRICE, MADE_IN, DEPARTMENT_CODE, QTY, ITEM_IMG) 
                 VALUES 
                 (11, 'Spring Mix', 6.97, 5.58, 'Canada', 9203, 23, 
-                '/img/items/bagels.png');";                
+                '/img/items/springmix.png');";                
 
 try {
     $result = mysqli_query($connect, $insertItem);

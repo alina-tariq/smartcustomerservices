@@ -1,4 +1,12 @@
-ul {
+.navbar-scroll .navbar-brand,
+.navbar-scroll .nav-link,
+.navbar-scroll .nav-dro,
+.dropdown-menu, .dropdown-item {
+  color: #ffffff;
+}
+
+/* ul {
+    border-radius: 5px;
     list-style-type: none;
     background-color:#A38550;
     margin: 20px 10px;
@@ -13,6 +21,7 @@ li {
 }
 
 li:last-child{
+    border-radius: 2px;
     float: right;
     background-color: lightgreen;
 }
@@ -28,7 +37,7 @@ li a{
 li a:hover{
     color: black;
     background-color: yellow;
-}
+} */
 
 body {
     background-color: #ffffff;
@@ -99,6 +108,7 @@ img.icon {
 .logo {
     height: 70%;
     width: 70%;
+
 }
 
 .section_title {
@@ -167,14 +177,14 @@ img.icon {
     z-index: 1;
 }
 
-.dropButton {
+/* .dropButton {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: lightgray;
     padding: 0px 10px;
-}
+} */
 
-.dropdown {
+/* .dropdown {
     position: relative;
     top: -25px;
     display: none;
@@ -183,7 +193,7 @@ img.icon {
     padding: 10px 20px;
     text-decoration: none; 
     z-index: 2;
-}
+} */
 
 .topRight:hover .dropdown {
     display: block;
@@ -214,6 +224,9 @@ a.database:hover {
 
 figcaption.figText {
     text-align: center;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
     background-color:#806519;
 }
 
@@ -224,4 +237,103 @@ h6.f1 {
     border: 2px solid #806519;
     margin: 10px;
     padding: 10px; 
+}
+
+input[type=textbox].reviewTxt {
+    float: right;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 3px solid #ccc; 
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    word-wrap: break-word;
+    padding: 0px 10px;
+    size: 200;
+}
+
+input[type=textbox].reviewTxt:focus {
+    border: 3px solid black;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+input[type=text], input[type=password], input[type=date], input[type=time] {
+    height: 30px;
+    border-radius: 5px;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=time]:focus {
+    border: 3px solid black;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+input[type=button], input[type=submit], button {
+    border-radius: 10px;
+    padding: 4px;
+    text-align: center;
+    background-color: rgb(14, 141, 209);
+    color: white;
+    cursor: pointer;
+    border: none;
+    box-shadow: 2px 2px #ccc;
+}
+
+.service1_button {
+    box-shadow: 2px 2px #7a9c7c;
+}
+
+table {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+th, td {
+    padding: 15px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.right {
+    float: right;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-radial-gradient(circle, #ee7a2c 0%, #3bb5c8 100%);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: radial-gradient(circle, #ee7a2c 0%, #3bb5c8 100%)
+}
+
+.gradient-custom2 {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-radial-gradient(ellipse, #ee7a2c 20%, #3bb5c8 100%);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: radial-gradient(ellipse 70% 100%, #ee7a2c 20%, #3bb5c8 100%)
+}
+
+input[type=radio] {
+    transform:scale(1.75);
+}
+select {
+    position:relative;
+    border-radius: 5px;
 }

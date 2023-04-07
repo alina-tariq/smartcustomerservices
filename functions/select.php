@@ -29,5 +29,6 @@ class Select {
 $table = $_POST["tablename"];
 $data = $_POST["values"];
 
+
 $select = new Select($table, $data);
 $select->returnSearch();

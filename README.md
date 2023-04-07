@@ -5,5 +5,5 @@ localhost/phpMyAdmin/index.php in the browser and creating a new database called
 utf8mb4_general_ci. Then, open the browser to localhost/Team_28_Sec_03/mainpage.php.
 
 In the database will be some initialized values in most tables. There is one admin user,
-their credentials are 'kiera pass123' there is no way to create new admin users without
+their credentials are 'kieran pass123' there is no way to create new admin users without
 using another admin user.

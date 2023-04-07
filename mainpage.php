@@ -3,6 +3,7 @@
 <?php require_once "sql/initializeDatabase.php"; ?>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
@@ -32,13 +33,12 @@
                 </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <h1 class="tClass">Smart Customer Services</h1>
+                <h1 class="tClass">SMART CUSTOMER SERVICES</h1>
             </div>
         </div>
     </div>
-
+</div>
     <body ng-app="myApp">
-
         <nav class="navbar py-3 navbar-expand-lg fixed-top navbar-scroll">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"

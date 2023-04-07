@@ -282,9 +282,14 @@ input[type=button], input[type=submit], button {
     box-shadow: 2px 2px #7a9c7c;
 }
 
-table {
-    border: 1px solid black;
-    border-radius: 5px;
+table.selTable {
+    margin-top: 10px;
+    outline: 9px solid #f2f2f2;
+    outline-offset: -10px;
+    border-left: 2px solid #dee2e6;
+    border-right: 2px solid #dee2e6;
+    border-bottom: 2px solid #dee2e6;
+    border-radius: 10px;
 }
 
 th, td {

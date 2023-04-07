@@ -940,8 +940,10 @@
                             type: type
                         },
                         success: function (phpAsJson) {
+                            document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(phpAsJson)
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();
@@ -1122,6 +1124,7 @@
                             document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();
@@ -1169,6 +1172,7 @@
                             document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();
@@ -1215,6 +1219,7 @@
                             document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();
@@ -1261,6 +1266,7 @@
                             document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();
@@ -1307,6 +1313,7 @@
                             document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();
@@ -1353,6 +1360,7 @@
                             document.getElementById("conTable").innerHTML = "";
                             var container = document.getElementById("conTable");
                             let table = document.createElement("table");
+                            table.className = "table-bordered selTable";
                             var arr = JSON.parse(JSON.stringify(phpAsJson));
                             let cols = Object.keys(arr[0]);
                             let tr = table.insertRow();

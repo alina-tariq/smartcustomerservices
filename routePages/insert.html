@@ -1,0 +1,86 @@
+<div class="container">
+    <h4 style="padding-top: 40px;">Insert</h4>
+    <br>
+    <div class="row d_flex">
+        <div class="row d_flex">
+            <p>Truck:</p>
+                <form>
+                    <input type="text" placeholder="Truck Id" id="truck_id" required>
+                    <input type="text" placeholder="Truck Code" id="truck_code" required>
+                    <input type="text" placeholder="Availability Code" id="avail_code" required>
+                    <button ng-click="inTruck()">Submit</button>
+                </form>
+        </div>
+        <div class="row d_flex">
+            <p>Shopping:</p>
+            <form>
+                <input type="text" placeholder="Receipt Id" id="rec_id" required>
+                <input type="text" placeholder="Store Code" id="st_code" required>
+                <input type="text" placeholder="Price" id="price" required>
+                <button ng-click="inShop()">Submit</button>
+            </form>
+        </div>
+        <div class="row d_flex">
+            <p>Trips:</p>
+            <form>
+                <input type="text" placeholder="Trip Id" id="tripId" required>
+                <input type="text" placeholder="Source Code" id="srcCode" required>
+                <input type="text" placeholder="Destination Code" id="destCode" required>
+                <input type="text" placeholder="Distance" id="dist" required>
+                <input type="text" placeholder="Truck Id" id="tTruck_id" required>
+                <input type="text" placeholder="Price" id="tPrice" required>
+                <button ng-click="inTrip()">Submit</button>
+            </form>
+        </div>
+        <div class="row d_flex">
+            <p>User:</p>
+            <form>
+                <input type="text" placeholder="Real Name" id="uName" required>
+                <input type="text" placeholder="Username" id="uLogin" required>
+                <input type="text" placeholder="Email" id="uEmail" required>
+                <input type="text" placeholder="Phone Number" id="phone" required>
+                <input type="text" placeholder="Address" id="uAddress" required>
+                <input type="text" placeholder="City" id="uCity" required>
+                <input type="text" placeholder="Province/Territory" id="uProvince" required>
+                <input type="text" placeholder="Postal Code (A1A1A1)" id="uPost" required>
+                <input type="text" placeholder="Password" id="uPassword" required>
+                <input type="text" placeholder="Balance" id="uBalance" required>
+                <input type="text" placeholder="Account Type" id="uAcc" required>
+                <button ng-click="inUser()">Submit</button>
+            </form>
+        </div>
+        <div class="row d_flex">
+            <p>Order:</p>
+            <form>
+                <input type="text" placeholder="Order ID" id="orderId" required>
+                <input type="date" placeholder="Date Issues" id="dIssued" required>
+                <input type="date" placeholder="Date Received" id="dReceived" required>
+                <input type="text" placeholder="Total Price" id="totPrice" required>
+                <input type="text" placeholder="Payment Code" id="payment" required>
+                <input type="text" placeholder="User Id" id="oUId" required>
+                <input type="text" placeholder="Trip Id" id="oTId" required>
+                <input type="text" placeholder="Receipt Id" id="rTId" required>
+                <button ng-click="inOrder()">Submit</button>
+            </form>
+        </div>
+        <div class="row d_flex">
+            <p>Item:</p>
+            <form id="itemForm">
+                <input type="text" placeholder="Item Id" id="itemId" required>
+                <input type="text" placeholder="Item Name" id="itemName" required>
+                <input type="text" placeholder="Price" id="price" required>
+                <input type="text" placeholder="Discount Price" id="discount_price" required>
+                <input type="text" placeholder="Made In" id="madeIn" required>
+                <input type="text" placeholder="Department Code" id="dept" required>
+                <input type="text" placeholder="Quantity" id="qty" required>
+                <input type="file" id="itemImg" required>
+                <button ng-click="inItem()">Submit</button>
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="row d_flex">
+            <div id="insertMsg"></div>
+        </div>
+    </div>
+</div>

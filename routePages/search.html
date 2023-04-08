@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="justify-content-center text-center align-items-center">
+        <br>
+        <h4>Search</h4>
+        <br>
+        <form>
+            <select name="valCon" id="valConfirm">
+                <option value="userId">User ID</option>
+                <option value="orderId">Order ID</option>
+            </select>
+            <input type="text" placeholder="Input ID" id="idVal" required>
+            <button ng-click="searchVal()">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-center" id="conTable"></div>
+

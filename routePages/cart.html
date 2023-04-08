@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="row d_flex mainPage">
+        <div class="alert alert-custom" role="alert" id="warning" style="width:100%; display:none;">
+            <h5>Please Login Before Placing an Order</h5>
+        </div>
+
+        <div class="col-sm-6 m-1" id="invoice">
+            <div class="grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Cart</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="cartTable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-3">Product ID</th>
+                                        <th class="col-4">Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-init="readCookies()">
+                                </tbody>
+                            </table>
+                            <br>
+                            <button class="btn btn-outline-dark px-3" ng-click="deleteCookie()">Remove</button>
+                        </div>
+                        <br>
+                        <div>
+                            <h6 id="subtotal">Subtotal: $0.00</h6>
+                            <h6 id="deliveryFee">Delivery Fee: $5.49</h6>
+                            <h6 id="total">Total: $5.49</h6>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-5 m-1" id="input">
+            <div class="grid-margin stretch-card">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h4 class="card-title">Order Delivery</h4>
+                        <div class="form-group">
+                            <label for="uLocation">Delivery Address: </label>
+                            <input class="form-control form-control-sm" type="text" id="uLocation" required>
+                            <br>
+                            <label for="warehouse">Warehouse: </label>
+                            <select class="form-control form-control-sm" id="warehouse" required>
+                                <option value="350 Victoria Street, Toronto, ON" select="selected">350 Victoria Street,
+                                    Toronto, ON
+                                </option>
+                                <option value="220 Yonge Street, Toronto, ON">220 Yonge Street, Toronto, ON</option>
+                                <option value="290 Brenmer Blvd, Toronto, ON">290 Brenmer Blvd, Toronto, ON</option>
+                            </select>
+                            <br>
+                            <label for="deliveryDate">Choose a Delivery Date</label>
+                            <input class="form-control form-control-sm" type="date" placeholder="Delivery Date"
+                                id="deliveryDate" required>
+                            <br>
+                            <label for="delTime">Choose a Delivery Time (10am to 5pm)</label>
+                            <input class="form-control form-control-sm" type="time" id="delTime" name="deltime"
+                                required>
+                            <br>
+                            <button class="btn btn-outline-light px-3" ng-click="initMap()">Generate Invoice</button>
+                            <br>
+                            <br>
+                            <p id="invoiceError"></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="display:none" id="conComplete">
+    <div class="row d-flex justify-content-center align-items-center" id="printInvoice">
+        <div class="col-sm-6">
+            <div class="grid-margin stretch-card">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h2 class="card-title">Invoice</h2>
+                        <br>
+                        <h6>Destination Postal Code: <span id="address"></h6>
+                        <br>
+                        <h6>Warehouse Postal Code: <span id="branch"></h6>
+                        <br>
+                        <h6>Distance (km): <span id="distance"></h6>
+                        <br>
+                        <h6>Delivery Date: <span id="dayDelivered"></h6>
+                        <br>
+                        <h6>Delivery Time: <span id="deliveryTime"></h6>
+                        <br>
+                        <h6>Order Total: $<span id="invoiceTotal"></h6>
+                        <br>
+                        <br>
+                        <h5 class="text-white-100 mb-3">Payment Information</h5>
+
+                        <div class="form-outline form-white mb-4">
+                            <label class="form-label" for="cc">Credit Card:</label>
+                            <input type="text" placeholder="Credit Card Number" id="cc"
+                                class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="form-outline form-white mb-4">
+                            <label class="form-label" for="expiryDate">Expiry Date:</label>
+                            <input type="text" placeholder="Expiry Date (MM/YY)" id="expiryDate"
+                                class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="form-outline form-white mb-4">
+                            <label class="form-label" for="cvc">CVC:</label>
+                            <input type="text" placeholder="CVC" id="cvc" class="form-control form-control-sm" required>
+                        </div>
+                        <br>
+                        <button class="btn btn-outline-light btn-sm" ng-click="confirmOrder()">Submit Order</button>
+                        <br><br>
+                        <p id="invoicePaymentError"></p>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-4">
+            <div id="map"></div>
+            <p id="confirmLogin"></p>
+        </div>
+    </div>
+</div>

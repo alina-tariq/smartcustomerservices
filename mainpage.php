@@ -413,7 +413,7 @@
 
                 var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
                 var dateRe = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
-                var cvcRe = new RegExp("[0-9]{3}");
+                var cvcRe = new RegExp("^[0-9]{3}$");
 
                 if (document.getElementById("cc").value == null || document.getElementById("expiryDate").value == null || document.getElementById("cvc").value == null) {
                     document.getElementById("invoicePaymentError").innerHTML = "Please fill out payment information.";
@@ -1139,7 +1139,7 @@
                 const postalCodeCheck = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY][ -]?\d[ABCEGHJKLMNPRSTVXY]\d$/i);
                 const creditCheck = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
                 const expiryCheck = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
-                const cvcCheck = new RegExp("[0-9]{3}");
+                const cvcCheck = new RegExp("^[0-9]{3}$");
 
                 var verifyPhone = phoneCheck.test(phone);
                 var verifyProvince = provinceCheck.test(uProvince);
@@ -1546,10 +1546,13 @@
             $scope.becomePremium = function () {
                 var creditRe = new RegExp("[0-9]{4}(-?[0-9]{4}){3}$");
                 var dateRe = new RegExp("^(0[1-9]|1[0-2])\/?([0-9]{2})$");
-                var cvcRe = new RegExp("[0-9]{3}");
+                var cvcRe = new RegExp("^[0-9]{3}$");
                 var creditNum = document.getElementById("cNum").value;
                 var expDate = document.getElementById("eDate").value;
                 var cvc = document.getElementById("cvc_code").value;
+                console.log(creditRe.test(creditNum));
+                console.log(dateRe.test(expDate));
+                console.log(cvcRe.test(cvc));
                 if (creditRe.test(creditNum) && dateRe.test(expDate) && cvcRe.test(cvc)) {
                     jQuery.ajax({
                         type: "POST",
@@ -1561,7 +1564,7 @@
                     document.getElementById("cNum").value = "";
                     document.getElementById("eDate").value = "";
                     document.getElementById("cvc_code").value = "";
-                    document.getElementById("inc").innerHTML = "Please Enter Valid Payment Information";
+                    document.getElementById("premiumError").innerHTML = "Please Enter Valid Payment Information";
                 }
             }
         }]);

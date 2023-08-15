@@ -1,4 +1,8 @@
-# Smart Customer Services [CPS630 Project]
+<h1 align="center">Smart Customer Services [CPS630 Project]</h1>
+
+<p align="center">
+  <img src="https://alinacodes.vercel.app/static/media/scs.a9b4b9c670d20090b5db.png" height="200">
+</p>
 
 ## Description
 Smart Customer Services (SCS) is an online system that aims to plan for smart green trips inside the city and its neighborhood for online shopping

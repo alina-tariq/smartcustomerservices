@@ -4,7 +4,7 @@
   <img src="https://alinacodes.vercel.app/static/media/scs.a9b4b9c670d20090b5db.png" height="200">
 </p>
 
-## Description
+## Overview
 Smart Customer Services (SCS) is an online system that aims to plan for smart green trips inside the city and its neighborhood for online shopping
 and then delivery to the destinations. Our group chose the sale and at-home delivery of groceries as our department, and we built our website using AngularJS, PHP, and HTML/CSS/JS.
 

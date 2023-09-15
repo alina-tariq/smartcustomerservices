@@ -8,10 +8,16 @@
 Smart Customer Services (SCS) is an online system that aims to plan for smart green trips inside the city and its neighborhood for online shopping
 and then delivery to the destinations. Our group chose the sale and at-home delivery of groceries as our department, and we built our website using AngularJS, PHP, and HTML/CSS/JS.
 
+## Languages
+* AngularJS
+* HTML/CSS
+* PHP
+* SQL
+
 ## Demo
 A live demo of the website is currently available [here](http://smartcustomerservices.infinityfreeapp.com/#!/)!
 
-## Features:
+## Features
 * Users can sign up for a standard (can be upgraded later) or premium account and place orders for delivery 
 * Items can be added to the cart using drag and drop functionality
 * Users can submit reviews for items and orders

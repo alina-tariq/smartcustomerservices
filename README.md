@@ -11,7 +11,7 @@ and then delivery to the destinations. Our group chose the sale and at-home deli
 ## Demo
 A live demo of the website is currently available [here](http://smartcustomerservices.infinityfreeapp.com/#!/)!
 
-### Note:
+## Features:
 * Users can sign up for a standard (can be upgraded later) or premium account and place orders for delivery 
 * Items can be added to the cart using drag and drop functionality
 * Users can submit reviews for items and orders
